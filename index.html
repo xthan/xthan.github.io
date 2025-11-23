@@ -1,344 +1,1093 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
 <head>
-	<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-H24P0B5BNV"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xintong Han | AI Researcher</title>
+    <meta name="description" content="Xintong Han - Computer Vision & AI Research">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-H24P0B5BNV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-H24P0B5BNV');
+    </script>
 
-  gtag('config', 'G-H24P0B5BNV');
-</script>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<meta name="description" content="Xintong Han's Homepage" />
-	<meta name="keywords" content="Xintong Han, University of Maryland, Computer Vision, Image Processing, AI, Machine Learning, Huya" />
-	<meta name="author" content="Xintong Han" />
-	<link href='http://fonts.googleapis.com/css?family=Dosis' rel='stylesheet' type='text/css' />
-	<link rel="stylesheet" type="text/css" href="origo.css" title="Origo" media="all" />
-	<title>Xintong Han</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- CSS Variables --- */
+        :root {
+            --transition-speed: 0.3s;
+        }
+
+        /* LIGHT THEME (Default) */
+        [data-theme="light"] {
+            --bg-color: #f7f9fc;
+            --grid-line: rgba(0, 0, 0, 0.03);
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --name-highlight: #0056b3; /* Strong Blue for Name */
+            
+            --panel-bg: #ffffff;
+            --panel-border: #e2e8f0;
+            --panel-hover-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            
+            --accent-orange: #ff6b00; /* Unified Orange for Icons/Highlights */
+            --accent-hover: #e65100;
+            
+            --code-bg: #f1f5f9;
+            --terminal-header: #e2e8f0;
+            --scroll-track: #f1f5f9;
+            --scroll-thumb: #cbd5e1;
+            
+            --btn-border: rgba(255, 107, 0, 0.3);
+            --btn-bg: rgba(255, 107, 0, 0.05);
+        }
+
+        /* DARK THEME */
+        [data-theme="dark"] {
+            --bg-color: #0f1115;
+            --grid-line: rgba(255, 255, 255, 0.03);
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            --name-highlight: #60a5fa; /* Lighter Blue for Name in Dark Mode */
+            
+            --panel-bg: #1e293b;
+            --panel-border: #334155;
+            --panel-hover-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+            
+            --accent-orange: #fb923c; /* Lighter Orange for Dark Mode */
+            --accent-hover: #ffedd5;
+            
+            --code-bg: #020617;
+            --terminal-header: #1e293b;
+            --scroll-track: #0f172a;
+            --scroll-thumb: #475569;
+            
+            --btn-border: rgba(251, 146, 60, 0.3);
+            --btn-bg: rgba(251, 146, 60, 0.05);
+        }
+
+        /* --- Global Styles --- */
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+            
+            /* Technical Grid Background */
+            background-image: 
+                linear-gradient(var(--grid-line) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+            background-size: 30px 30px;
+            background-attachment: fixed;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        a { text-decoration: none; transition: 0.2s; color: inherit;}
+        
+        /* Highlighting Utilities */
+        .hl-name { color: var(--name-highlight); font-weight: 700; }
+        .hl-orange { color: var(--accent-orange); font-weight: 600; }
+        .hl-link { color: var(--name-highlight); border-bottom: 1px dashed var(--name-highlight); }
+        .hl-link:hover { border-bottom-style: solid; opacity: 0.8; }
+
+        /* --- Theme Toggle --- */
+        .theme-switch {
+            position: fixed;
+            top: 25px;
+            right: 25px;
+            z-index: 100;
+            background: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            color: var(--text-muted);
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: all 0.2s;
+        }
+        .theme-switch:hover { transform: translateY(-2px); color: var(--accent-orange); border-color: var(--accent-orange); }
+
+        /* --- Header Area --- */
+        .header-grid {
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: 50px;
+            align-items: start;
+            margin-bottom: 50px;
+        }
+
+        /* Avatar Gizmo */
+        .avatar-wrapper {
+            position: relative;
+            width: 160px;
+            height: 160px;
+            perspective: 800px;
+            margin-top: 10px;
+        }
+        .gizmo-ring {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            border: 1px solid var(--text-muted);
+            opacity: 0.2;
+            pointer-events: none;
+        }
+        .ring-1 { width: 190px; height: 190px; border-color: var(--name-highlight); animation: spin 15s linear infinite; opacity: 0.4; }
+        .ring-2 { width: 210px; height: 210px; border-color: var(--accent-orange); animation: spin-rev 20s linear infinite; opacity: 0.4; }
+        
+        @keyframes spin { 0% { transform: translate(-50%, -50%) rotate(0deg) rotateX(60deg); } 100% { transform: translate(-50%, -50%) rotate(360deg) rotateX(60deg); } }
+        @keyframes spin-rev { 0% { transform: translate(-50%, -50%) rotate(0deg) rotateY(60deg); } 100% { transform: translate(-50%, -50%) rotate(-360deg) rotateY(60deg); } }
+
+        .avatar-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid var(--panel-bg);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            position: relative;
+            z-index: 2;
+        }
+
+        .intro h1 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2.4rem;
+            margin: 0 0 12px 0;
+            letter-spacing: -1px;
+            color: var(--text-main);
+        }
+        
+        .bio { 
+            color: var(--text-muted); 
+            line-height: 1.65; 
+            font-size: 0.95rem; 
+        }
+        .bio p { margin-bottom: 10px; }
+
+        .hiring-badge {
+            margin-top: 15px;
+            padding: 8px 12px;
+            background: var(--code-bg);
+            border-left: 3px solid var(--accent-orange);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-family: 'JetBrains Mono', monospace;
+            display: inline-block;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .social-bar { 
+            margin-top: 20px; 
+            display: flex; 
+            gap: 15px; 
+            flex-wrap: wrap;
+        }
+        .social-btn {
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            padding: 6px 12px;
+            border-radius: 6px;
+            transition: all 0.2s;
+            border: 1px solid var(--panel-border);
+            background: var(--panel-bg);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .social-btn i { color: var(--accent-orange); }
+        .social-btn:hover { 
+            border-color: var(--accent-orange);
+            color: var(--text-main);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        /* --- Section Header --- */
+        h2 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.1rem;
+            color: var(--text-main);
+            border-bottom: 2px solid var(--panel-border);
+            padding-bottom: 10px;
+            margin: 50px 0 20px 0;
+            display: flex;
+            align-items: center;
+        }
+        h2::before {
+            content: ">";
+            color: var(--accent-orange);
+            margin-right: 10px;
+            font-weight: 800;
+        }
+
+        /* --- Terminal News --- */
+        .terminal-panel {
+            background: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            border-radius: 8px;
+            overflow: hidden;
+            font-family: 'JetBrains Mono', monospace;
+            box-shadow: var(--panel-hover-shadow);
+        }
+        .terminal-header {
+            background: var(--terminal-header);
+            padding: 6px 12px;
+            border-bottom: 1px solid var(--panel-border);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .terminal-body {
+            padding: 0;
+            /* Height calculation: Approx 5 items * 32px per item height + padding */
+            max-height: 180px; 
+            overflow-y: auto;
+            background: var(--code-bg);
+        }
+        
+        /* Scrollbar Styling */
+        .terminal-body::-webkit-scrollbar { width: 6px; }
+        .terminal-body::-webkit-scrollbar-track { background: var(--scroll-track); }
+        .terminal-body::-webkit-scrollbar-thumb { background: var(--scroll-thumb); border-radius: 3px; }
+        .terminal-body::-webkit-scrollbar-thumb:hover { background: var(--accent-orange); }
+
+        .log-entry {
+            padding: 8px 15px;
+            display: flex;
+            align-items: baseline;
+            font-size: 0.8rem;
+            border-bottom: 1px dashed var(--grid-line);
+            transition: all 0.2s ease;
+            cursor: default;
+        }
+        .log-entry:last-child { border-bottom: none; }
+        
+        /* News Hover Effect */
+        .log-entry:hover {
+            background: rgba(255, 107, 0, 0.03); /* Very subtle orange tint */
+            transform: translateX(5px);
+            border-left: 2px solid var(--accent-orange);
+            padding-left: 13px; /* Adjust for border */
+        }
+
+        .log-time { 
+            color: var(--accent-orange); 
+            min-width: 90px; 
+            font-weight: 600; 
+        }
+        .log-content { color: var(--text-muted); }
+        .log-content b { color: var(--text-main); font-weight: 600; }
+        .log-content a { color: var(--name-highlight); border-bottom: 1px dotted; }
+
+        /* --- Publications --- */
+        .paper-list { display: flex; flex-direction: column; gap: 15px; }
+
+        .paper-item {
+            background: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            transition: all 0.2s ease;
+        }
+
+        .paper-item:hover {
+            border-color: var(--accent-orange);
+            transform: translateY(-2px);
+            box-shadow: var(--panel-hover-shadow);
+        }
+
+        .paper-content { flex: 1; padding-right: 25px; }
+
+        .paper-title {
+            display: block;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .paper-authors {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+        /* Highlight my name */
+        .paper-authors .me { color: var(--name-highlight); font-weight: 700; }
+
+        .paper-meta {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-muted);
+            flex-wrap: wrap;
+        }
+
+        .venue { 
+            color: var(--text-main);
+            background: var(--code-bg);
+            border: 1px solid var(--panel-border);
+            padding: 2px 8px; 
+            border-radius: 4px; 
+            font-weight: 500;
+        }
+        .tag-spotlight { color: var(--accent-orange); font-weight: 700; }
+        .tag-oral { color: var(--accent-orange); font-weight: 700; }
+
+        /* Buttons */
+        .paper-links {
+            display: flex;
+            flex-direction: column; 
+            gap: 8px;
+            min-width: 90px;
+            align-items: flex-end;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--accent-orange); /* All Icons/Text Orange */
+            background: var(--btn-bg);
+            border: 1px solid var(--btn-border);
+            border-radius: 6px;
+            text-transform: uppercase;
+            font-weight: 600;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        
+        .btn:hover {
+            background: var(--accent-orange);
+            color: #fff;
+            border-color: var(--accent-orange);
+        }
+        .btn i { color: inherit; } /* Icons inherit hover color */
+
+        /* --- Footer --- */
+        footer {
+            margin-top: 80px;
+            text-align: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            padding-bottom: 40px;
+            border-top: 1px dashed var(--panel-border);
+            padding-top: 30px;
+        }
+        
+        .footer-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 10px;
+            opacity: 0.8;
+        }
+        .footer-logo i { color: var(--accent-orange); }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .header-grid { grid-template-columns: 1fr; text-align: center; gap: 20px; }
+            .avatar-wrapper { margin: 0 auto; }
+            .paper-item { flex-direction: column; }
+            .paper-links { flex-direction: row; margin-top: 15px; align-items: center; width: 100%; justify-content: flex-start; flex-wrap: wrap;}
+            .social-bar { justify-content: center; }
+            .hiring-badge { border-left: none; border-top: 3px solid var(--accent-orange); border-radius: 0 0 6px 6px;}
+        }
+    </style>
 </head>
+<body>
 
+    <!-- Theme Toggle -->
+    <button class="theme-switch" id="theme-toggle" aria-label="Toggle Theme">
+        <i class="fas fa-sun"></i>
+    </button>
 
-<body class="light blue smaller freestyle01">
-<div id="layout">
- 
-	<div class="row smaller">
-		<div class="col c5 smaller">
-			<h1><a href="index.html">Xintong Han</a></h1>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col c12">
-			<img style="float: right; margin: 0px 0px 0px 20px" src="images/me_italy.jpg" height="300">
-			<p> I am a senior tech lead manager at <a href="http://ir.huya.com">Huya Inc</a> as of August 2019. Before that, I spent one wonderful year at <a href="https://www.malong.com/en/home"> Malong Technologies </a> as a research scientist. </p>
-      <p> I obtained my Ph.D. degree at the <a href="http://www.ece.umd.edu/"> Department of Electrical and Computer Engineering</a> of the <a href="http://www.umd.edu/">University of Maryland, College Park</a>, under the supervision of <a href="http://www.umiacs.umd.edu/~lsd/">Prof. Larry S. Davis</a>. Prior, I got my B.S. degree from <a href="http://en.sjtu.edu.cn/">Shanghai Jiao Tong University</a> in China, advised by <a href="http://weiyaolin.github.io">Prof. Weiyao Lin</a>.
-			
-      <p> <strong> I am looking for highly motivated researchers, engineers, and interns working on exciting computer vision and graphics projects in Shenzhen/Guangzhou. If you are interested, please send me an email. </strong></p>
-			
-			<li>Email: xintong@umd.edu; hanxintong@huya.com</li>
-	
-	<h2>news</h2>
-        <li> [Nov. 2024] Code of <a href="https://github.com/Francis-Rings/MotionFollower">MotionFollower</a> and <a href="https://github.com/Francis-Rings/StableAnimator">StableAnimator</a> released. </li>
-        <li> [Jun. 2024] MotionEditor accepted by CVPR 2024. </li>
-        <li> [Mar. 2023] Cloth4D accepted by CVPR 2023. </li>
-        <li> [Jan. 2023] MotionFormer accepted by ICLR 2023. </li>
-<!--         <li> [Mar. 2023] XFormer accepted by IJCAI 2023. </li>
-        <li> [Oct. 2022] FFCLIP accepted as a spotlight paper by NeurIPS 2022. </li>
-        <li> [Mar. 2022] One paper accepted by CVPR 2022. </li>
-        <li> [Oct. 2021] One paper accepted by NeurIPS 2021. </li>
-        <li> [Mar. 2021] Four papers accepted by CVPR 2021. </li>
-        <li> [Sep. 2020] PGNet accepted by ACCV 2020 as an oral paper. </li>
-        <li> [Jul. 2020] MakeItTalk accepted by SIGGRAPH Asia 2020. </li>
-       <li> [Nov. 2019] Three papers accepted by AAAI 2020. </li>
-        <li> [Aug. 2019] Joined Huya Inc. as a computer vision tech lead. </li>
-        <li> [Jun. 2019] One oral paper and one poster paper accepted by ICCV 2019. </li>
-        <li> [Mar. 2019] One paper accepted by CVPR 2019. </li>
-        <li> [Jul. 2018] One paper accepted by ECCV 2018. </li>
-        <li> [Jun. 2018] Defended my dissertation! </li>
-        <li> [Feb. 2018] Three papers accepted by CVPR 2018. </li> -->
- 	</div>
-<!-- 		
-	<h2>Projects</h2>
-	<li> HDR and Voice seperation of LOL S12 [<a href="https://finance.sina.com.cn/tech/roll/2022-10-25/doc-imqqsmrp3726417.shtml">media</a>]</li>
-	<li> Virtual Streamer Animation [<a href="http://www.techweb.com.cn/it/2021-08-06/2852619.shtml">media</a>]  </li>
-	<li> Anime Talking Heads [<a href="https://www.sohu.com/a/481791844_118792">media</a>] </li>
-	<li> Several AI effects on <a href="https://apps.apple.com/cn/app/id1509415070">LicoLico APP</a> </li>
-	<h2>publication</h2> -->
+    <div class="container">
+        
+        <!-- Header -->
+        <header class="header-grid">
+            <div class="avatar-wrapper">
+                <div class="gizmo-ring ring-1"></div>
+                <div class="gizmo-ring ring-2"></div>
+                <img src="./Xintong Han_files/me_italy.jpg" alt="Xintong Han" class="avatar-img">
+            </div>
 
-	<div class="paper">
-	<strong>StableAnimator: High-Quality Identity-Preserving Human Image Animation.</strong> 
-	<br> Shuyuan Tu, Zhen Xing, <b> Xintong Han</b>, Zhi-Qi Cheng, Qi Dai, Chong Luo, Zuxuan Wu <br>	
-	<i>Conference on Computer Vision and Pattern Recognition (<b>CVPR</b>)</i>, 2025. [<a href="https://arxiv.org/pdf/2411.17697">pdf</a>] [<a href="https://github.com/Francis-Rings/StableAnimator">code</a>]
-      </div>
+            <div class="intro">
+                <h1><span class="hl-name">Xintong</span> Han</h1>
+                <div class="bio">
+                    <p>
+                        I am a researcher at the <a href="https://3d.hunyuan.tencent.com/" class="hl-link" target="_blank">Tencent Hunyuan 3D Generation Team</a>. 
+                        Previously, I was as a Senior Tech Lead Manager at <a href="http://ir.huya.com/" class="hl-link">Huya Inc</a> (2019-2025) and a Research Scientist at <a href="https://www.malong.com/en/home" class="hl-link">Malong Technologies</a> (2018-2019).
+                    </p>
+                    <p>
+                        I obtained my Ph.D. from the <a href="http://www.umd.edu/" class="hl-link">University of Maryland, College Park</a>, advised by <a href="http://www.umiacs.umd.edu/~lsd/" class="hl-link">Prof. Larry S. Davis</a>. 
+                        During my Ph.D., I completed two awesome internships at Google. 
+                        Prior to that, I received my B.S. degree from <a href="http://en.sjtu.edu.cn/" class="hl-link">Shanghai Jiao Tong University</a>, advised by <a href="http://weiyaolin.github.io/" class="hl-link">Prof. Weiyao Lin</a>.
+                    </p>
+                    
+                    <div class="hiring-badge">
+                        <i class="fas fa-code"></i> HIRING: Multimodal GenAI Researchers/Interns in Shenzhen/Beijing/Shanghai.
+                    </div>
+                </div>
+                
+                <div class="social-bar">
+                    <a href="mailto:hixintonghan@gmail.com" class="social-btn">
+                        <i class="fas fa-envelope"></i> Email
+                    </a>
+                    <a href="https://github.com/xthan" class="social-btn">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                    <a href="https://scholar.google.com/citations?hl=en&user=FGiWOIAAAAAJ" class="social-btn">
+                        <i class="fas fa-graduation-cap"></i> Scholar
+                    </a>
+                </div>
+            </div>
+        </header>
 
-	<div class="paper">
-	<strong>MotionFollower: Editing Video Motion via Lightweight Score-Guided Diffusion.</strong> 
-	<br> Shuyuan Tu, Qi Dai, Zihao Zhang, Sicheng Xie, Zhi-Qi Cheng, Chong Luo, <b> Xintong Han</b>, Zuxuan Wu, Yu-Gang Jiang <br>	
-	<i> arxiv: 2405.20325</i>, 2024. [<a href="https://arxiv.org/pdf/2405.20325">pdf</a>] [<a href="https://github.com/Francis-Rings/MotionFollower">code</a>]
-      </div>
+        <!-- News Log -->
+        <h2>System Log</h2>
+        <div class="terminal-panel">
+            <div class="terminal-header">
+                <span><i class="fas fa-terminal"></i> system_log.txt</span>
+                <span>--lines=5</span>
+            </div>
+            <div class="terminal-body">
+                <div class="log-entry">
+                    <span class="log-time">Oct 2025</span>
+                    <span class="log-content">Will serve as an Area Chair at CVPR 2026.</span>
+                </div>
+                <div class="log-entry">
+                    <span class="log-time">Jul 2025</span>
+                    <span class="log-content">Back to working on 3D stuff at Tencent Hunyuan.</span>
+                </div>
+                <div class="log-entry">
+                    <span class="log-time">Nov 2024</span>
+                    <span class="log-content">Code released: <a href="https://github.com/Francis-Rings/MotionFollower">MotionFollower</a> & <a href="https://github.com/Francis-Rings/StableAnimator">StableAnimator</a>.</span>
+                </div>
+                <div class="log-entry">
+                    <span class="log-time">Jun 2024</span>
+                    <span class="log-content">MotionEditor accepted by CVPR 2024.</span>
+                </div>
+                <div class="log-entry">
+                    <span class="log-time">Mar 2023</span>
+                    <span class="log-content">Cloth4D accepted by CVPR 2023.</span>
+                </div>
+                <!-- History -->
+                <div class="log-entry">
+                    <span class="log-time">Jan 2023</span>
+                    <span class="log-content">MotionFormer accepted by ICLR 2023.</span>
+                </div>
+                <div class="log-entry">
+                    <span class="log-time">Oct 2022</span>
+                    <span class="log-content">FFCLIP accepted as a Spotlight by NeurIPS 2022.</span>
+                </div>
+                <div class="log-entry">
+                    <span class="log-time">Mar 2022</span>
+                    <span class="log-content">One paper accepted by CVPR 2022.</span>
+                </div>
+                <div class="log-entry">
+                    <span class="log-time">Oct 2021</span>
+                    <span class="log-content">One paper accepted by NeurIPS 2021.</span>
+                </div>
+                <div class="log-entry">
+                    <span class="log-time">Mar 2021</span>
+                    <span class="log-content">Four papers accepted by CVPR 2021.</span>
+                </div>
+                <div class="log-entry">
+                    <span class="log-time">Sep 2020</span>
+                    <span class="log-content">PGNet accepted by ACCV 2020 as an <b class="hl-orange">Oral</b>.</span>
+                </div>
+                <div class="log-entry">
+                    <span class="log-time">Jul 2020</span>
+                    <span class="log-content">MakeItTalk accepted by SIGGRAPH Asia 2020.</span>
+                </div>
+                <div class="log-entry">
+                    <span class="log-time">Nov 2019</span>
+                    <span class="log-content">Three papers accepted by AAAI 2020.</span>
+                </div>
+                <div class="log-entry">
+                    <span class="log-time">Aug 2019</span>
+                    <span class="log-content">Joined Huya Inc. as a computer vision tech lead.</span>
+                </div>
+                <div class="log-entry">
+                    <span class="log-time">Jun 2019</span>
+                    <span class="log-content">One oral paper and one poster paper accepted by ICCV 2019.</span>
+                </div>
+                <div class="log-entry">
+                    <span class="log-time">Mar 2019</span>
+                    <span class="log-content">One paper accepted by CVPR 2019.</span>
+                </div>
+                <div class="log-entry">
+                    <span class="log-time">Jul 2018</span>
+                    <span class="log-content">One paper accepted by ECCV 2018.</span>
+                </div>
+                <div class="log-entry">
+                    <span class="log-time">Jun 2018</span>
+                    <span class="log-content">Defended my dissertation!</span>
+                </div>
+                <div class="log-entry">
+                    <span class="log-time">Feb 2018</span>
+                    <span class="log-content">Three papers accepted by CVPR 2018.</span>
+                </div>
+            </div>
+        </div>
 
-	<div class="paper">
-	<strong>Motioneditor: Editing Video Motion via Content-aware Diffusion.</strong> 
-	<br>Shuyuan Tu, Qi Dai, Zhi-Qi Cheng, Han Hu, <b> Xintong Han</b>, Zuxuan Wu, Yu-Gang Jiang <br>	
-	<i> Conference on Computer Vision and Pattern Recognition (<b>CVPR</b>)</i>, 2024. [<a href="https://openaccess.thecvf.com/content/CVPR2024/papers/Tu_MotionEditor_Editing_Video_Motion_via_Content-Aware_Diffusion_CVPR_2024_paper.pdf">pdf</a>] [<a href="https://github.com/Francis-Rings/MotionEditor">code</a>]
-      </div>
-	
-	<div class="paper">
-	<strong>CLOTH4D: A Dataset for Clothed Human Reconstruction.</strong> 
-	<br> Xingxing Zou, <b>Xintong Han</b>, Waikeung Wong <br>	
-	<i> Conference on Computer Vision and Pattern Recognition (<b>CVPR</b>)</i>, 2023. [<a href="https://openaccess.thecvf.com/content/CVPR2023/papers/Zou_CLOTH4D_A_Dataset_for_Clothed_Human_Reconstruction_CVPR_2023_paper.pdf">pdf</a>] [<a href="https://github.com/AemikaChow/CLOTH4D">code</a>]
-      </div>
-	
+        <!-- Publications -->
+        <h2>Selected Publications</h2>
+        
+        <div class="paper-list">
 
+            <!-- 2025 -->
+            <div class="paper-item">
+                <div class="paper-content">
+                    <span class="paper-title">Hunyuan3D Studio: End-to-End AI Pipeline for Game-Ready 3D Asset Generation</span>
+                    <div class="paper-authors">Hunyuan 3D Team</div>
+                    <div class="paper-meta">
+                        <span class="venue">Arxiv 2025</span>
+                    </div>
+                </div>
+                <div class="paper-links">
+                    <a href="https://arxiv.org/pdf/2509.12815" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                </div>
+            </div>
 
-	<div class="paper">
-	<strong>XFormer: Fast and Accurate Monocular 3D Body Capture.</strong> 
-	<br> Lihui Qian,  <b>Xintong Han</b>, Faqiang Wang, Hongyu Liu, Haoye Dong, Zhiwen Li, Huawei Wei, Zhe Lin, Cheng-Bin Jin <br>	
-	<i>  International Joint Conference on Artificial Intelligence (<b>IJCAI</b>)</i>, 2023. [<a href="https://arxiv.org/pdf/2305.11101.pdf">pdf</a>]
-      </div>
-	
-		
-	<div class="paper">
-	<strong>CoverHunter: Cover Song Identification with Refined Attention and Alignments.</strong> 
-	<br> Feng Liu, Deyi Tuo, Yinan Xu, <b>Xintong Han</b>  <br>	
-	<i>   International Conference on Multimedia and Expo (<b>ICME</b>)</i>, 2023. [<a href="https://arxiv.org/pdf/2306.09025.pdf">pdf</a>][<a href="https://github.com/Liu-Feng-deeplearning/CoverHunter">code</a>]
-      </div>
-	
-		
-        <div class="paper">
-	<strong>Human MotionFormer: Transferring Human Motions with Vision Transformers.</strong> 
-	<br> Hongyu Liu, <b>Xintong Han</b>, Chenbin Jin, Lihui Qian, Huawei Wei, Zhe Lin, Faqiang Wang, Haoye Dong, Yibing Song, Jia Xu, Qifeng Chen <br>	
-	<i>  International Conference on Learning Representations (<b>ICLR</b>)</i>, 2023. [<a href="https://openreview.net/forum?id=lQVpasnQS62">pdf</a>]
-      </div>
-	
-		
-		
-        <div class="paper">
-	<strong>One Model to Edit Them All: Free-Form Text-Driven Image Manipulation with Semantic Modulations.</strong> 
-	<br> Yiming Zhu, Hongyu Liu, Yibing Song, ziyang Yuan,  <b>Xintong Han</b>, Chun Yuan, Qifeng Chen, Jue Wang <br>	
-	<i>  Conference on Neural Information Processing Systems (<b>NeurIPS</b>)</i>, 2022. <b>Spotlight.</b> [<a href="https://arxiv.org/pdf/2210.07883.pdf">pdf</a>][<a href="https://github.com/KumapowerLIU/FFCLIP">code</a>]
-      </div>
+            <div class="paper-item">
+                <div class="paper-content">
+                    <span class="paper-title">StableAvatar: Infinite-Length Audio-Driven Avatar Video Generation</span>
+                    <div class="paper-authors">Shuyuan Tu, Yueming Pan, Yinming Huang, <span class="me">Xintong Han</span>, Zhen Xing, Qi Dai, Chong Luo, Zuxuan Wu, Yu-Gang Jiang</div>
+                    <div class="paper-meta">
+                        <span class="venue">Arxiv 2025</span>
+                    </div>
+                </div>
+                <div class="paper-links">
+                    <a href="https://arxiv.org/pdf/2508.08248" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                    <a href="https://github.com/Francis-Rings/StableAvatar" class="btn"><i class="fab fa-github"></i> CODE</a>
+                </div>
+            </div>
 
-        <div class="paper">
-	<strong>ObjectFormer for Image Manipulation Detection and Localization.</strong> 
-	<br> 
-Junke Wang, Zuxuan Wu, Jingjing Chen, <b>Xintong Han</b>, Abhinav Shrivastava, Ser-Nam Lim, Yu-Gang Jiang<br>	
-	<i> Conference on Computer Vision and Pattern Recognition (<b>CVPR</b>)</i>, 2022. [<a href="https://openaccess.thecvf.com/content/CVPR2022/html/Wang_ObjectFormer_for_Image_Manipulation_Detection_and_Localization_CVPR_2022_paper.html">pdf</a>]
-      </div>
+            <div class="paper-item">
+                <div class="paper-content">
+                    <span class="paper-title">StableAnimator: High-Quality Identity-Preserving Human Image Animation</span>
+                    <div class="paper-authors">Shuyuan Tu, Zhen Xing, <span class="me">Xintong Han</span>, Zhi-Qi Cheng, Qi Dai, Chong Luo, Zuxuan Wu</div>
+                    <div class="paper-meta">
+                        <span class="venue">CVPR 2025</span>
+                    </div>
+                </div>
+                <div class="paper-links">
+                    <a href="https://arxiv.org/pdf/2411.17697" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                    <a href="https://github.com/Francis-Rings/StableAnimator" class="btn"><i class="fab fa-github"></i> CODE</a>
+                </div>
+            </div>
 
-        <div class="paper">
-	<strong>Action-guided 3D Human Motion Prediction.</strong> 
-	<br> Jiangxin Sun, Zihang Lin,  <b> Xintong Han </b>, Jian-Fang Hu, Jia Xu, Wei-Shi Zheng <br>	
-	<i>  Conference on Neural Information Processing Systems (<b>NeurIPS</b>)</i>, 2021. [<a href="https://proceedings.neurips.cc/paper/2021/file/fd9dd764a6f1d73f4340d570804eacc4-Paper.pdf">pdf</a>]
-      </div>
-		
-        <div class="paper">
-	<strong>Few-Shot Human Motion Transfer by Personalized Geometry and Texture Modeling.</strong> 
-	<br> Zhichao Huang, <b> Xintong Han </b>, Jia Xu, Tong Zhang <br>	
-	<i> Conference on Computer Vision and Pattern Recognition (<b>CVPR</b>)</i>, 2021. [<a href="https://arxiv.org/pdf/2103.14338">pdf</a>][<a href="https://github.com/HuangZhiChao95/FewShotMotionTransfer">code</a>]
-      </div>
+            <div class="paper-item">
+                <div class="paper-content">
+                    <span class="paper-title">MotionFollower: Editing Video Motion via Lightweight Score-Guided Diffusion</span>
+                    <div class="paper-authors">Shuyuan Tu, Qi Dai, Zihao Zhang, Sicheng Xie, Zhi-Qi Cheng, Chong Luo, <span class="me">Xintong Han</span>, Zuxuan Wu, Yu-Gang Jiang</div>
+                    <div class="paper-meta">
+                        <span class="venue">ICCV 2025</span>
+                    </div>
+                </div>
+                <div class="paper-links">
+                    <a href="https://arxiv.org/pdf/2405.20325" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                    <a href="https://github.com/Francis-Rings/MotionFollower" class="btn"><i class="fab fa-github"></i> CODE</a>
+                </div>
+            </div>
 
+            <!-- 2024 -->
+            <div class="paper-item">
+                <div class="paper-content">
+                    <span class="paper-title">MotionEditor: Editing Video Motion via Content-aware Diffusion</span>
+                    <div class="paper-authors">Shuyuan Tu, Qi Dai, Zhi-Qi Cheng, Han Hu, <span class="me">Xintong Han</span>, Zuxuan Wu, Yu-Gang Jiang</div>
+                    <div class="paper-meta">
+                        <span class="venue">CVPR 2024</span>
+                    </div>
+                </div>
+                <div class="paper-links">
+                    <a href="https://openaccess.thecvf.com/content/CVPR2024/papers/Tu_MotionEditor_Editing_Video_Motion_via_Content-Aware_Diffusion_CVPR_2024_paper.pdf" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                    <a href="https://github.com/Francis-Rings/MotionEditor" class="btn"><i class="fab fa-github"></i> CODE</a>
+                </div>
+            </div>
 
-      <div class="paper">
-        <strong>PD-GAN: Probabilistic Diverse GAN for Image Inpainting.</strong> 
-	<br> Hongyu Liu, Ziyu Wan, Wei Huang, Yibing Song, <b> Xintong Han </b>, Jing Liao <br>	
-        <i> Conference on Computer Vision and Pattern Recognition (<b>CVPR</b>)</i>, 2021. [<a href="https://arxiv.org/pdf/2105.02201">pdf</a>][<a href="https://github.com/KumapowerLIU/PD-GAN">code</a>]
-      </div>
+            <!-- 2023 -->
+            <div class="paper-item">
+                <div class="paper-content">
+                    <span class="paper-title">CLOTH4D: A Dataset for Clothed Human Reconstruction</span>
+                    <div class="paper-authors">Xingxing Zou*, <span class="me">Xintong Han*</span>, Waikeung Wong</div>
+                    <div class="paper-meta">
+                        <span class="venue">CVPR 2023</span>
+                    </div>
+                </div>
+                <div class="paper-links">
+                    <a href="https://openaccess.thecvf.com/content/CVPR2023/papers/Zou_CLOTH4D_A_Dataset_for_Clothed_Human_Reconstruction_CVPR_2023_paper.pdf" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                    <a href="https://github.com/AemikaChow/CLOTH4D" class="btn"><i class="fab fa-github"></i> CODE</a>
+                </div>
+            </div>
 
+            <div class="paper-item">
+                <div class="paper-content">
+                    <span class="paper-title">XFormer: Fast and Accurate Monocular 3D Body Capture</span>
+                    <div class="paper-authors">Lihui Qian, <span class="me">Xintong Han</span>, Faqiang Wang, Hongyu Liu, Haoye Dong, Zhiwen Li, Huawei Wei, Zhe Lin, Cheng-Bin Jin</div>
+                    <div class="paper-meta">
+                        <span class="venue">IJCAI 2023</span>
+                    </div>
+                </div>
+                <div class="paper-links">
+                    <a href="https://arxiv.org/pdf/2305.11101.pdf" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                </div>
+            </div>
 
-     <div class="paper">
-        <strong>DeFLOCNet: Deep Image Editing via Flexible Low-level Controls.</strong> 
-	<br>  Hongyu Liu, Ziyu Wan, Wei Huang, Yibing Song, <b> Xintong Han </b>, Jing Liao, Bing Jiang, Wei Liu <br>	
-        <i> Conference on Computer Vision and Pattern Recognition (<b>CVPR</b>)</i>, 2021. [<a href="https://arxiv.org/pdf/2103.12723.pdf">pdf</a>][<a href="https://github.com/KumapowerLIU/DeFLOCNet">code</a>]
-      </div>
+            <div class="paper-item">
+                <div class="paper-content">
+                    <span class="paper-title">CoverHunter: Cover Song Identification with Refined Attention and Alignments</span>
+                    <div class="paper-authors">Feng Liu, Deyi Tuo, Yinan Xu, <span class="me">Xintong Han</span></div>
+                    <div class="paper-meta">
+                        <span class="venue">ICME 2023</span>
+                    </div>
+                </div>
+                <div class="paper-links">
+                    <a href="https://arxiv.org/pdf/2306.09025.pdf" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                    <a href="https://github.com/Liu-Feng-deeplearning/CoverHunter" class="btn"><i class="fab fa-github"></i> CODE</a>
+                </div>
+            </div>
 
+            <div class="paper-item">
+                <div class="paper-content">
+                    <span class="paper-title">Human MotionFormer: Transferring Human Motions with Vision Transformers</span>
+                    <div class="paper-authors">Hongyu Liu, <span class="me">Xintong Han</span>, Chenbin Jin, Lihui Qian, Huawei Wei, Zhe Lin, Faqiang Wang, Haoye Dong, Yibing Song, Jia Xu, Qifeng Chen</div>
+                    <div class="paper-meta">
+                        <span class="venue">ICLR 2023</span>
+                    </div>
+                </div>
+                <div class="paper-links">
+                    <a href="https://openreview.net/forum?id=lQVpasnQS62" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                </div>
+            </div>
 
-     <div class="paper">
-        <strong>Fine-Grained Shape-Appearance Mutual Learning for Cloth-Changing Person Re-Identification.</strong> 
-	<br> Peixian Hong*, Tao Wu*, Ancong Wu, <b> Xintong Han</b>, Wei-Shi Zheng <br>	
-        <i> Conference on Computer Vision and Pattern Recognition (<b>CVPR</b>)</i>, 2021. [<a href="https://openaccess.thecvf.com/content/CVPR2021/papers/Hong_Fine-Grained_Shape-Appearance_Mutual_Learning_for_Cloth-Changing_Person_Re-Identification_CVPR_2021_paper.pdf">pdf</a>]
-      </div>
+            <!-- 2022 -->
+            <div class="paper-item">
+                <div class="paper-content">
+                    <span class="paper-title">One Model to Edit Them All: Free-Form Text-Driven Image Manipulation with Semantic Modulations</span>
+                    <div class="paper-authors">Yiming Zhu, Hongyu Liu, Yibing Song, Ziyang Yuan, <span class="me">Xintong Han</span>, Chun Yuan, Qifeng Chen, Jue Wang</div>
+                    <div class="paper-meta">
+                        <span class="venue">NeurIPS 2022</span>
+                        <span class="tag-spotlight">Spotlight</span>
+                    </div>
+                </div>
+                <div class="paper-links">
+                    <a href="https://arxiv.org/pdf/2210.07883.pdf" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                    <a href="https://github.com/KumapowerLIU/FFCLIP" class="btn"><i class="fab fa-github"></i> CODE</a>
+                </div>
+            </div>
 
+            <div class="paper-item">
+                <div class="paper-content">
+                    <span class="paper-title">ObjectFormer for Image Manipulation Detection and Localization</span>
+                    <div class="paper-authors">Junke Wang, Zuxuan Wu, Jingjing Chen, <span class="me">Xintong Han</span>, Abhinav Shrivastava, Ser-Nam Lim, Yu-Gang Jiang</div>
+                    <div class="paper-meta">
+                        <span class="venue">CVPR 2022</span>
+                    </div>
+                </div>
+                <div class="paper-links">
+                    <a href="https://openaccess.thecvf.com/content/CVPR2022/html/Wang_ObjectFormer_for_Image_Manipulation_Detection_and_Localization_CVPR_2022_paper.html" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                </div>
+            </div>
 
-      <div class="paper">
-        <strong>Learning 3D Face Reconstruction with a Pose Guidance Network.</strong> 
-        <br>Pengpeng Liu, <b> Xintong Han</b>, Michael Lyu, Irwin King, Jia Xu<br>
-        <i> Asian Conference on Computer Vision (<b>ACCV</b>)</i>, 2020. <b>Oral</b>. [<a href="https://arxiv.org/pdf/2010.04384.pdf">pdf</a>]
-      </div>
+            <!-- 2021 -->
+            <div class="paper-item">
+                <div class="paper-content">
+                    <span class="paper-title">Action-guided 3D Human Motion Prediction</span>
+                    <div class="paper-authors">Jiangxin Sun, Zihang Lin, <span class="me">Xintong Han</span>, Jian-Fang Hu, Jia Xu, Wei-Shi Zheng</div>
+                    <div class="paper-meta">
+                        <span class="venue">NeurIPS 2021</span>
+                    </div>
+                </div>
+                <div class="paper-links">
+                    <a href="https://proceedings.neurips.cc/paper/2021/file/fd9dd764a6f1d73f4340d570804eacc4-Paper.pdf" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                </div>
+            </div>
 
+             <div class="paper-item">
+                <div class="paper-content">
+                    <span class="paper-title">Few-Shot Human Motion Transfer by Personalized Geometry and Texture Modeling</span>
+                    <div class="paper-authors">Zhichao Huang, <span class="me">Xintong Han</span>, Jia Xu, Tong Zhang</div>
+                    <div class="paper-meta">
+                        <span class="venue">CVPR 2021</span>
+                    </div>
+                </div>
+                <div class="paper-links">
+                    <a href="https://arxiv.org/pdf/2103.14338" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                    <a href="https://github.com/HuangZhiChao95/FewShotMotionTransfer" class="btn"><i class="fab fa-github"></i> CODE</a>
+                </div>
+            </div>
 
-      <div class="paper">
-        <strong>MakeItTalk: Speaker-Aware Talking Head Animation.</strong>
-        <br>Yang Zhou, Dingzeyu Li, <b>Xintong Han</b>, Evangelos Kalogerakis, Eli Shechtman and Jose Echevarria<br>
-        <i> <b> SIGGRAPH Asia</b></i>, 2020. [<a href="https://arxiv.org/pdf/2004.12992.pdf">pdf</a>]
-      </div>
+             <div class="paper-item">
+                <div class="paper-content">
+                    <span class="paper-title">PD-GAN: Probabilistic Diverse GAN for Image Inpainting</span>
+                    <div class="paper-authors">Hongyu Liu, Ziyu Wan, Wei Huang, Yibing Song, <span class="me">Xintong Han</span>, Jing Liao</div>
+                    <div class="paper-meta">
+                        <span class="venue">CVPR 2021</span>
+                    </div>
+                </div>
+                <div class="paper-links">
+                    <a href="https://arxiv.org/pdf/2105.02201" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                    <a href="https://github.com/KumapowerLIU/PD-GAN" class="btn"><i class="fab fa-github"></i> CODE</a>
+                </div>
+            </div>
 
+             <div class="paper-item">
+                <div class="paper-content">
+                    <span class="paper-title">DeFLOCNet: Deep Image Editing via Flexible Low-level Controls</span>
+                    <div class="paper-authors">Hongyu Liu, Ziyu Wan, Wei Huang, Yibing Song, <span class="me">Xintong Han</span>, Jing Liao, Bing Jiang, Wei Liu</div>
+                    <div class="paper-meta">
+                        <span class="venue">CVPR 2021</span>
+                    </div>
+                </div>
+                <div class="paper-links">
+                    <a href="https://arxiv.org/pdf/2103.12723.pdf" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                    <a href="https://github.com/KumapowerLIU/DeFLOCNet" class="btn"><i class="fab fa-github"></i> CODE</a>
+                </div>
+            </div>
 
-      <div class="paper">
-        <strong>iFAN: Image-Instance Full Alignment Networks for Adaptive Object Detection.</strong>
-        <br>Chenfan Zhuang, <b>Xintong Han</b>, Weilin Huang and Matthew R. Scott<br>
-        <i> AAAI Conference on Artificial Intelligence (<b>AAAI</b>)</i>, 2020. [<a href="https://arxiv.org/pdf/2003.04132.pdf">pdf</a>]
-      </div>
+             <div class="paper-item">
+                <div class="paper-content">
+                    <span class="paper-title">Fine-Grained Shape-Appearance Mutual Learning for Cloth-Changing Person Re-Identification</span>
+                    <div class="paper-authors">Peixian Hong, Tao Wu, Ancong Wu, <span class="me">Xintong Han</span>, Wei-Shi Zheng</div>
+                    <div class="paper-meta">
+                        <span class="venue">CVPR 2021</span>
+                    </div>
+                </div>
+                <div class="paper-links">
+                    <a href="https://openaccess.thecvf.com/content/CVPR2021/papers/Hong_Fine-Grained_Shape-Appearance_Mutual_Learning_for_Cloth-Changing_Person_Re-Identification_CVPR_2021_paper.pdf" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                </div>
+            </div>
 
-      <div class="paper">
-        <strong>Channel Interaction Networks for Fine-Grained Image Categorization.</strong>
-        <br>Yu Gao, <b>Xintong Han</b>, Weilin Huang and Matthew R. Scott<br>
-        <i> AAAI Conference on Artificial Intelligence (<b>AAAI</b>)</i>, 2020. [<a href="https://arxiv.org/pdf/2003.05235">pdf</a>]
-      </div>
+            <!-- 2020 -->
+            <div class="paper-item">
+                <div class="paper-content">
+                    <span class="paper-title">Learning 3D Face Reconstruction with a Pose Guidance Network</span>
+                    <div class="paper-authors">Pengpeng Liu, <span class="me">Xintong Han</span>, Michael Lyu, Irwin King, Jia Xu</div>
+                    <div class="paper-meta">
+                        <span class="venue">ACCV 2020</span>
+                        <span class="tag-oral">Oral</span>
+                    </div>
+                </div>
+                <div class="paper-links">
+                    <a href="https://arxiv.org/pdf/2010.04384.pdf" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                </div>
+            </div>
 
+            <div class="paper-item">
+                <div class="paper-content">
+                    <span class="paper-title">MakeItTalk: Speaker-Aware Talking Head Animation</span>
+                    <div class="paper-authors">Yang Zhou, Dingzeyu Li, <span class="me">Xintong Han</span>, Evangelos Kalogerakis, Eli Shechtman, Jose Echevarria</div>
+                    <div class="paper-meta">
+                        <span class="venue">SIGGRAPH Asia 2020</span>
+                    </div>
+                </div>
+                <div class="paper-links">
+                    <a href="https://arxiv.org/pdf/2004.12992.pdf" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                </div>
+            </div>
+            
+            <div class="paper-item">
+                <div class="paper-content">
+                    <span class="paper-title">iFAN: Image-Instance Full Alignment Networks for Adaptive Object Detection</span>
+                    <div class="paper-authors">Chenfan Zhuang, <span class="me">Xintong Han</span>, Weilin Huang, Matthew R. Scott</div>
+                    <div class="paper-meta">
+                        <span class="venue">AAAI 2020</span>
+                    </div>
+                </div>
+                <div class="paper-links">
+                    <a href="https://arxiv.org/pdf/2003.04132.pdf" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                </div>
+            </div>
+            
+             <div class="paper-item">
+                <div class="paper-content">
+                    <span class="paper-title">Channel Interaction Networks for Fine-Grained Image Categorization</span>
+                    <div class="paper-authors">Yu Gao, <span class="me">Xintong Han</span>, Weilin Huang, Matthew R. Scott</div>
+                    <div class="paper-meta">
+                        <span class="venue">AAAI 2020</span>
+                    </div>
+                </div>
+                <div class="paper-links">
+                    <a href="https://arxiv.org/pdf/2003.05235" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                </div>
+            </div>
+            
+            <div class="paper-item">
+                <div class="paper-content">
+                    <span class="paper-title">Generate, Segment and Refine: Towards Generic Manipulation Segmentation</span>
+                    <div class="paper-authors">Peng Zhou, Bor-Chun Chen, <span class="me">Xintong Han</span>, Mahyar Najibi, Abhinav Shrivastava, Ser-Nam Lim, Larry S. Davis</div>
+                    <div class="paper-meta">
+                        <span class="venue">AAAI 2020</span>
+                    </div>
+                </div>
+                <div class="paper-links">
+                    <a href="http://arxiv.org/pdf/1811.09729.pdf" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                </div>
+            </div>
 
-      <div class="paper">
-        <strong>Generate, Segment and Refine: Towards Generic Manipulation Segmentation.</strong>
-        <br> Peng Zhou, Bor-Chun Chen, <b>Xintong Han</b>, Mahyar Najibi, Abhinav Shrivastava, Ser-Nam Lim and Larry S. Davis<br>
-        <i> AAAI Conference on Artificial Intelligence (<b>AAAI</b>)</i>, 2020. [<a href="http://arxiv.org/pdf/1811.09729.pdf">pdf</a>]
-      </div>
+            <!-- 2019 -->
+             <div class="paper-item">
+                <div class="paper-content">
+                    <span class="paper-title">Compatible and Diverse Fashion Image Inpainting</span>
+                    <div class="paper-authors"><span class="me">Xintong Han</span>, Zuxuan Wu, Weilin Huang, Matthew R. Scott, Larry S. Davis</div>
+                    <div class="paper-meta">
+                        <span class="venue">ICCV 2019</span>
+                        <span class="tag-oral">Oral</span>
+                    </div>
+                </div>
+                <div class="paper-links">
+                    <a href="http://openaccess.thecvf.com/content_ICCV_2019/papers/Han_FiNet_Compatible_and_Diverse_Fashion_Image_Inpainting_ICCV_2019_paper.pdf" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                </div>
+            </div>
 
+            <div class="paper-item">
+                <div class="paper-content">
+                    <span class="paper-title">ClothFlow: A Flow-Based Model for Clothed Person Generation</span>
+                    <div class="paper-authors"><span class="me">Xintong Han</span>, Xiaojun Hu, Weilin Huang, Matthew R. Scott</div>
+                    <div class="paper-meta">
+                        <span class="venue">ICCV 2019</span>
+                    </div>
+                </div>
+                <div class="paper-links">
+                    <a href="http://openaccess.thecvf.com/content_ICCV_2019/papers/Han_ClothFlow_A_Flow-Based_Model_for_Clothed_Person_Generation_ICCV_2019_paper.pdf" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                </div>
+            </div>
 
+            <div class="paper-item">
+                <div class="paper-content">
+                    <span class="paper-title">Multi-Similarity Loss with General Pair Weighting for Deep Metric Learning</span>
+                    <div class="paper-authors">Xun Wang, <span class="me">Xintong Han</span>, Weilin Huang, Dengke Dong, Matthew R. Scott</div>
+                    <div class="paper-meta">
+                        <span class="venue">CVPR 2019</span>
+                    </div>
+                </div>
+                <div class="paper-links">
+                    <a href="https://arxiv.org/pdf/1904.06627.pdf" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                    <a href="https://github.com/MalongTech/research-ms-loss" class="btn"><i class="fab fa-github"></i> CODE</a>
+                </div>
+            </div>
 
-      <div class="paper">
-        <strong>Compatible and Diverse Fashion Image Inpainting.</strong>
-        <br><b>Xintong Han</b>, Zuxuan Wu, Weilin Huang, Matthew R. Scott and Larry S. Davis<br>
-        <i> International Conference on Computer Vision (<b>ICCV</b>)</i>, 2019. <b>Oral</b>. [<a href="http://openaccess.thecvf.com/content_ICCV_2019/papers/Han_FiNet_Compatible_and_Diverse_Fashion_Image_Inpainting_ICCV_2019_paper.pdf">pdf</a>][<a href="http://openaccess.thecvf.com/content_ICCV_2019/supplemental/Han_FiNet_Compatible_and_ICCV_2019_supplemental.pdf">supp</a>]
-      </div>
+            <!-- 2018 & Older -->
+            <div class="paper-item">
+                <div class="paper-content">
+                    <span class="paper-title">DCAN: Dual Channel-wise Alignment Networks for Unsupervised Scene Adaptation</span>
+                    <div class="paper-authors">Zuxuan Wu, <span class="me">Xintong Han</span>, Yen-Liang Lin, Mustafa Gkhan Uzunbas, Tom Goldstein, Ser Nam Lim, Larry Davis</div>
+                    <div class="paper-meta">
+                        <span class="venue">ECCV 2018</span>
+                    </div>
+                </div>
+                <div class="paper-links">
+                    <a href="https://arxiv.org/pdf/1804.05827.pdf" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                </div>
+            </div>
 
-      <div class="paper">
-        <strong>ClothFlow: A Flow-Based Model for Clothed Person Generation. </strong>
-        <br> <b>Xintong Han</b>, Xiaojun Hu, Weilin Huang and Matthew R. Scott<br>
-        <i> International Conference on Computer Vision (<b>ICCV</b>)</i>, 2019. <!-- [<a href="">pdf</a>] --> [<a href="http://openaccess.thecvf.com/content_ICCV_2019/papers/Han_ClothFlow_A_Flow-Based_Model_for_Clothed_Person_Generation_ICCV_2019_paper.pdf">pdf</a>][<a href="http://openaccess.thecvf.com/content_ICCV_2019/supplemental/Han_ClothFlow_A_Flow-Based_ICCV_2019_supplemental.pdf">supp</a>]
-      </div>
+            <div class="paper-item">
+                <div class="paper-content">
+                    <span class="paper-title">VITON: An Image-based Virtual Try-on Network</span>
+                    <div class="paper-authors"><span class="me">Xintong Han</span>, Zuxuan Wu, Zhe Wu, Ruichi Yu, Larry Davis</div>
+                    <div class="paper-meta">
+                        <span class="venue">CVPR 2018</span>
+                        <span class="tag-spotlight">Spotlight</span>
+                    </div>
+                </div>
+                <div class="paper-links">
+                    <a href="https://arxiv.org/pdf/1711.08447.pdf" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                    <a href="https://github.com/xthan/viton/" class="btn"><i class="fab fa-github"></i> CODE</a>
+                </div>
+            </div>
+            
+             <div class="paper-item">
+                <div class="paper-content">
+                    <span class="paper-title">Learning Rich Features for Image Manipulation Detection</span>
+                    <div class="paper-authors">Peng Zhou, <span class="me">Xintong Han</span>, Vlad Morariu, Larry Davis</div>
+                    <div class="paper-meta">
+                        <span class="venue">CVPR 2018</span>
+                    </div>
+                </div>
+                <div class="paper-links">
+                    <a href="https://arxiv.org/pdf/1805.04953.pdf" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                    <a href="https://github.com/pengzhou1108/RGB-N" class="btn"><i class="fab fa-github"></i> CODE</a>
+                </div>
+            </div>
+            
+            <div class="paper-item">
+                <div class="paper-content">
+                    <span class="paper-title">NISP: Pruning Networks Using Neuron Importance Score Propagation</span>
+                    <div class="paper-authors">Ruichi Yu, Ang Li, Chun-Fu Chen, Jui-Hsin Lai, Vlad Morariu, <span class="me">Xintong Han</span>, Mingfei Gao, Ching-Yung Lin, Larry Davis</div>
+                    <div class="paper-meta">
+                        <span class="venue">CVPR 2018</span>
+                        <span class="tag-spotlight">Spotlight</span>
+                    </div>
+                </div>
+                <div class="paper-links">
+                    <a href="https://arxiv.org/pdf/1711.05908.pdf" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                </div>
+            </div>
+            
+            <div class="paper-item">
+                <div class="paper-content">
+                    <span class="paper-title">Automatic Spatially-aware Fashion Concept Discovery</span>
+                    <div class="paper-authors"><span class="me">Xintong Han</span>, Zuxuan Wu, Phoenix Huang, Xiao Zhang, Menglong Zhu, Yuan Li, Yang Zhao, Larry Davis</div>
+                    <div class="paper-meta">
+                        <span class="venue">ICCV 2017</span>
+                    </div>
+                </div>
+                <div class="paper-links">
+                    <a href="https://arxiv.org/pdf/1708.01311.pdf" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                    <a href="https://github.com/xthan/fashion-200k/" class="btn"><i class="fas fa-database"></i> DATA</a>
+                </div>
+            </div>
+            
+             <div class="paper-item">
+                <div class="paper-content">
+                    <span class="paper-title">Learning Fashion Compatibility with Bidirectional LSTMs</span>
+                    <div class="paper-authors"><span class="me">Xintong Han</span>, Zuxuan Wu, Yu-Gang Jiang, Larry Davis</div>
+                    <div class="paper-meta">
+                        <span class="venue">ACM Multimedia 2017</span>
+                        <span class="tag-oral">Oral</span>
+                    </div>
+                </div>
+                <div class="paper-links">
+                    <a href="https://arxiv.org/pdf/1707.05691.pdf" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                    <a href="https://github.com/xthan/polyvore/" class="btn"><i class="fab fa-github"></i> CODE</a>
+                </div>
+            </div>
+            
+            <div class="paper-item">
+                <div class="paper-content">
+                    <span class="paper-title">Two-Stream Neural Networks for Tampered Face Detection</span>
+                    <div class="paper-authors">Peng Zhou*, <span class="me">Xintong Han*</span>, Vlad Morariu, Larry Davis</div>
+                    <div class="paper-meta">
+                        <span class="venue">CVPRW 2017</span>
+                    </div>
+                </div>
+                <div class="paper-links">
+                    <a href="https://arxiv.org/pdf/1803.11276.pdf" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                </div>
+            </div>
+            
+            <div class="paper-item">
+                <div class="paper-content">
+                    <span class="paper-title">Son of Zorn's Lemma: Targeted Style Transfer Using Instance-aware Semantic Segmentation</span>
+                    <div class="paper-authors">Carlos Castillo, Soham De, <span class="me">Xintong Han</span>, Bharat Singh, Abhay Kumar Yadav, Tom Goldstein</div>
+                    <div class="paper-meta">
+                        <span class="venue">ICASSP 2017</span>
+                        <span class="tag-oral">Oral</span>
+                    </div>
+                </div>
+                <div class="paper-links">
+                    <a href="https://arxiv.org/pdf/1701.02357.pdf" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                </div>
+            </div>
+            
+             <div class="paper-item">
+                <div class="paper-content">
+                    <span class="paper-title">VRFP: On-the-fly Video Retrieval using Web Images and Fast Fisher Vector Products</span>
+                    <div class="paper-authors"><span class="me">Xintong Han*</span>, Bharat Singh*, Vlad Morariu, Larry Davis</div>
+                    <div class="paper-meta">
+                        <span class="venue">IEEE TMM 2017</span>
+                    </div>
+                </div>
+                <div class="paper-links">
+                    <a href="https://arxiv.org/pdf/1512.03384.pdf" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                </div>
+            </div>
+            
+            <div class="paper-item">
+                <div class="paper-content">
+                    <span class="paper-title">Machine Learning-based Early Termination in Prediction Block Decomposition for VP9</span>
+                    <div class="paper-authors"><span class="me">Xintong Han</span>, Yunqing Wang, Yaowu Xu, Jim Bankoski</div>
+                    <div class="paper-meta">
+                        <span class="venue">SPIE 2016</span>
+                    </div>
+                </div>
+                <div class="paper-links">
+                    <a href="https://library.imaging.org/ei/articles/28/2/art00006" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                </div>
+            </div>
 
- 
-      <div class="paper">
-        <strong>Multi-Similarity Loss with General Pair Weighting for Deep Metric Learning. </strong>
-        <br> Xun Wang, <b>Xintong Han</b>, Weilin Huang, Dengke Dong and Matthew R. Scott<br>
-        <i> Conference on Computer Vision and Pattern Recognition (<b>CVPR</b>)</i>, 2019. [<a href="https://arxiv.org/pdf/1904.06627.pdf">pdf</a>][<a href="https://github.com/MalongTech/research-ms-loss">code</a>]
-      </div>
-      
-      <div class="paper">
-        <strong>DCAN: Dual Channel-wise Alignment Networks for Unsupervised Scene Adaptation. </strong>
-        <br> Zuxuan Wu, <b>Xintong Han</b>, Yen-Liang Lin, Mustafa Gkhan Uzunbas, Tom Goldstein, Ser Nam Lim, and Larry Davis<br>
-        <i> European Conference on Computer Vision (<b>ECCV</b>)</i>, 2018. [<a href="https://arxiv.org/pdf/1804.05827.pdf">pdf</a>]
-      </div>
-      
-      <div class="paper">
-        <strong>VITON: An Image-based Virtual Try-on Network.</strong>
-        <br><b>Xintong Han</b>, Zuxuan Wu, Zhe Wu, Ruichi Yu, and Larry Davis<br>
-        <i> Conference on Computer Vision and Pattern Recognition (<b>CVPR</b>)</i>, 2018. <b>Spotlight.</b> [<a href="https://arxiv.org/pdf/1711.08447.pdf">pdf</a>] [<a href="https://github.com/xthan/viton/">code</a>]
-<p><small>[<a>Note: the dataset used in this paper is no longer available due to copyright infringements. For those who have already downloaded the data, please do not use or distribute it.</a>]</small></p>
-      </div>
-      
-      
-      <div class="paper">
-        <strong>Learning Rich Features for Image Manipulation Detection.</strong>
-        <br> Peng Zhou, <b>Xintong Han</b>, Vlad Morariu, and Larry Davis<br>
-        <i> Conference on Computer Vision and Pattern Recognition (<b>CVPR</b>)</i>, 2018. [<a href="https://arxiv.org/pdf/1805.04953.pdf">pdf</a>][<a href="https://github.com/pengzhou1108/RGB-N">code</a>]
-      </div>
-      
-      
-      <div class="paper">
-        <strong> NISP: Pruning Networks Using Neuron Importance Score Propagation.</strong>
-        <br>Ruichi Yu, Ang Li, Chun-Fu Chen, Jui-Hsin Lai, Vlad Morariu, <b>Xintong Han</b>, Mingfei Gao, Ching-Yung Lin, and Larry Davis<br>
-        <i> Conference on Computer Vision and Pattern Recognition (<b>CVPR</b>)</i>, 2018. <b>Spotlight.</b>  [<a href="https://arxiv.org/pdf/1711.05908.pdf">pdf</a>]
-      </div>
-      
-      <div class="paper">
-        <strong>Automatic Spatially-aware Fashion Concept Discovery.</strong>
-        <br><b>Xintong Han</b>, Zuxuan Wu, Phoenix Huang, Xiao Zhang, Menglong Zhu, Yuan Li, Yang Zhao, and Larry Davis<br>
-        <i> International Conference on Computer Vision (<b>ICCV</b>)</i>, 2017. [<a href="https://arxiv.org/pdf/1708.01311.pdf">pdf</a>] [<a href="https://github.com/xthan/fashion-200k/">dataset</a>]
-      </div>
-      
-      <div class="paper">
-        <strong>Learning Fashion Compatibility with Bidirectional LSTMs.</strong>
-        <br><b>Xintong Han</b>, Zuxuan Wu, Yu-Gang Jiang, and Larry Davis<br>
-        <i> ACM Multimedia</i>, 2017. <b>Oral</b>. [<a href="https://arxiv.org/pdf/1707.05691.pdf">pdf</a>]  [<a href="https://github.com/xthan/polyvore-dataset/">dataset</a>] [<a href="https://github.com/xthan/polyvore/">code</a>]
-      </div>
+        </div>
 
-      <div class="paper">
-        <strong>Two-Stream Neural Networks for Tampered Face Detection.</strong>
-        <br>Peng Zhou*, <b>Xintong Han</b>*, Vlad Morariu,, and Larry Davis (* equal contribution)<br>
-        <i> Conference on Computer Vision and Pattern Recognition, Workshop on Media Forensics (<b>CVPRW</b>)</i>, 2017. [<a href="https://arxiv.org/pdf/1803.11276.pdf">pdf</a>]
-      </div>
+        <footer>
+            <!-- <p>Rendering the Future.</p> -->
+            <p class="footer-logo">
+                Made with <i class="fas fa-microchip"></i> Gemini 3 Pro. 
+            </p>
+            <p style="font-size: 0.75rem; margin-top:5px; font-style: italic; opacity: 0.7;">
+                (No GPUs were harmed in the making of this HTML. Browsing this site consumes 0 tokens.)
+            </p>
+            <p style="margin-top:20px;">&copy; 2025 Xintong Han</p>
+        </footer>
 
-      
-      <div class="paper">
-        <strong>Son of Zorn's Lemma: Targeted Style Transfer Using Instance-aware Semantic Segmentation.</strong>
-        <br>Carlos Castillo, Soham De, <b>Xintong Han</b>, Bharat Singh, Abhay Kumar Yadav, and Tom Goldstein<br>
-        <i> International Conference on Acoustics, Speech and Signal Processing (<b>ICASSP</b>)</i>, 2017. <b>Oral</b>. [<a href="https://arxiv.org/pdf/1701.02357.pdf">pdf</a>]
-      </div>
-      
+    </div>
 
-			<div class="paper">
-				<strong>VRFP: On-the-fly Video Retrieval using Web Images and Fast Fisher Vector Products</strong>
-				<br> <b>Xintong Han*</b>, Bharat Singh*, Vlad Morariu, and Larry Davis (* equal contribution)<br>
-				<i> IEEE Transaction on Multimedia (<b>TMM</b>)</i>, 2017. [<a href="https://arxiv.org/pdf/1512.03384.pdf">pdf</a>]
-        <br><i> Presented at the <a href="http://www.vision.ee.ethz.ch/webvision/workshop.html">WebVision workshop</a> <b>CVPR</b> 2017 </i>.<br>
-			</div>
-			
-      <div class="paper">
-        <strong>Machine Learning-based Early Termination in Prediction Block Decomposition for VP9</strong>
-        <br><b>Xintong Han</b>, Yunqing Wang, Yaowu Xu, and Jim Bankoski<br>
-        <i>IS&T/SPIE Electronic Imaging</i>, 2016. [<a href="https://library.imaging.org/ei/articles/28/2/art00006">pdf</a>]
-      </div>
+    <script>
+        // Theme Toggle Logic
+        const toggleBtn = document.getElementById('theme-toggle');
+        const icon = toggleBtn.querySelector('i');
+        const html = document.documentElement;
 
-<!--      
+        // Default to Light
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', savedTheme);
+        updateIcon(savedTheme);
 
-			<div class="paper">
+        toggleBtn.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateIcon(newTheme);
+        });
 
-				<strong>Selecting Relevant Web Trained Concepts for Automated Event Retrieval</strong>
-				<br>Bharat Singh*, <b>Xintong Han*</b>, Zhe Wu, Vlad Morariu, and Larry Davis (* equal contribution)<br>
-				<i>International Conference on Computer Vision (<b>ICCV</b>)</i>, 2015. [<a href="https://arxiv.org/pdf/1509.07845.pdf">pdf</a>]
-			</div>
-			
-			<div class="paper">
-				<strong>Tree-Based Visualization and Optimization for Image Collection</strong>
-				<br><b>Xintong Han</b>, Chongyang Zhang, Weiyao Lin, Mingliang Xu, Bin Sheng, and Tao Mei<br>
-				<i>IEEE Transactions on Cybernetics</i>, 2015. [<a href="publications/tree_visualization.pdf">pdf</a>]
-			
-			</div>
-			
-			<div class="paper">
-				<strong>PSPGC: Part-Based Seeds for Parametric Graph-Cuts</strong>
-				<br>Bharat Singh, <b>Xintong Han</b>, Zhe Wu, and Larry Davis<br>
-				<i>Asian Conference on Computer Vision (<b>ACCV</b>)</i>, 2014. [<a href="publications/accv2014_PSPGC.pdf">pdf</a>]
-			
-			</div>
-				
-			<div class="paper">
-				<strong>A New Local-Main-Gadient-Orientation HOG and Contour Differences based Algorithm for Classification</strong>
-				<br>Xiaoqiong Su, Weiyao Lin, Xiaozhen Zheng, <b>Xintong Han</b>, Hang Chu, and Xiaoyun Zhang<br>
-				<i>IEEE International Symposium on Circuits and Systems (<b>ISCAS</b>)</i>, pp. 2892 - 2895, 2013.) [<a href="publications/HOG_Object_Recognition.pdf">pdf</a>]
-			
-			</div>
-
-			
-			<div class="paper">
-				<strong>Periodic Motion Detection With ROI-based Similarity Measure and Extrema-based Reference-frame Selection</strong>
-				<br><b>Xintong Han</b>, Gaojian Li, Weiyao Lin, Xiaoqiong Su, Hongxiang Li, Hui Wei<br>
-				<i>Asia-Pacific Signal and Information Processing Association Annual Summit and Conference (<b>APSIPA ASC</b>)</i>, pp. 1-4, 2012.) [<a href="publications/Periodic_Motion_Detection.pdf">pdf</a>]
-			
-			</div>
-
-			
- 			<div class="paper">
-				<strong>A Patch-based Framework for Detecting Abnormal Activities with a PTZ Camera</strong>
-				<br>Yisi Tao, Yuanzhe Chen, Weiyao Lin, <b>Xintong Han</b>, Hongxiang Li, and Zheng Lu</br>
-				<i>IEEE Visual Communications and Image Processing (<b>VCIP</b>)</i>, pp. 1-6, 2012.) [<a href="publications/Detecting_ Abnormal_Activities _PTZ_Camera.pdf">pdf</a>]
-			
-			</div> -->
-		</div>
-	</div>
-	<div float:left id="footer" class="row">
-		<div  style="float: right;margin-right:20px">
-			<h3 style="text-align:right">&copy; 2023 Xintong Han</h3>
-			<p>Based on <a href="http://andreasviklund.com/templates/origo/">free design</a> by <a href="http://andreasviklund.com/">Andreas Viklund</a><br /></p>
-		</div>
-		<div style="position:absolute;left:50%;top=100%">
-			<img src="images/made_on_a_mac.gif" float width="76" height="40"/>
-		</div>
-	</div>
- </div>
+        function updateIcon(theme) {
+            if (theme === 'dark') {
+                icon.className = 'fas fa-moon';
+            } else {
+                icon.className = 'fas fa-sun';
+            }
+        }
+    </script>
 </body>
 </html>
-
-
