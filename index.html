@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Xintong Han | AI Researcher</title>
     <meta name="description" content="Xintong Han - Computer Vision & AI Research">
-    
+
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-H24P0B5BNV"></script>
     <script>
@@ -22,126 +22,195 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* --- CSS Variables --- */
+        /* ══════════════════════════════════════════════
+           CSS VARIABLES & THEMES
+           ══════════════════════════════════════════════ */
         :root {
-            --transition-speed: 0.3s;
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+            --font-mono: 'JetBrains Mono', 'Menlo', monospace;
+            --font-sans: 'Inter', -apple-system, sans-serif;
         }
 
-        /* LIGHT THEME (Default) */
         [data-theme="light"] {
-            --bg-color: #f7f9fc;
-            --grid-line: rgba(0, 0, 0, 0.03);
-            --text-main: #1e293b;
-            --text-muted: #64748b;
-            --name-highlight: #0056b3; /* Strong Blue for Name */
-            
-            --panel-bg: #ffffff;
-            --panel-border: #e2e8f0;
-            --panel-hover-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-            
-            --accent-orange: #ff6b00; /* Unified Orange for Icons/Highlights */
+            --bg-primary: #f7f9fc;
+            --bg-secondary: #f1f5f9;
+            --bg-elevated: #ffffff;
+            --bg-surface: #f8fafc;
+            --border-subtle: #e2e8f0;
+            --border-medium: #e2e8f0;
+            --border-accent: rgba(255, 107, 0, 0.3);
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-tertiary: #94a3b8;
+            --accent: #ff6b00;
             --accent-hover: #e65100;
-            
-            --code-bg: #f1f5f9;
-            --terminal-header: #e2e8f0;
+            --accent-dim: rgba(255, 107, 0, 0.05);
+            --accent-glow: rgba(255, 107, 0, 0.03);
+            --name-color: #0056b3;
+            --link-color: #0056b3;
+            --link-hover: #003d80;
+            --shadow-card: 0 4px 12px rgba(0,0,0,0.05);
+            --shadow-card-hover: 0 10px 25px -5px rgba(0,0,0,0.1);
+            --grain-opacity: 0;
+            --venue-bg: rgba(255, 107, 0, 0.05);
+            --venue-border: rgba(255, 107, 0, 0.2);
             --scroll-track: #f1f5f9;
             --scroll-thumb: #cbd5e1;
-            
+            --year-color: #cbd5e1;
+            --grid-line: rgba(0, 0, 0, 0.03);
             --btn-border: rgba(255, 107, 0, 0.3);
             --btn-bg: rgba(255, 107, 0, 0.05);
         }
 
-        /* DARK THEME */
         [data-theme="dark"] {
-            --bg-color: #0f1115;
-            --grid-line: rgba(255, 255, 255, 0.03);
-            --text-main: #e2e8f0;
-            --text-muted: #94a3b8;
-            --name-highlight: #60a5fa; /* Lighter Blue for Name in Dark Mode */
-            
-            --panel-bg: #1e293b;
-            --panel-border: #334155;
-            --panel-hover-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
-            
-            --accent-orange: #fb923c; /* Lighter Orange for Dark Mode */
+            --bg-primary: #0f1115;
+            --bg-secondary: #0f172a;
+            --bg-elevated: #1e293b;
+            --bg-surface: #1e293b;
+            --border-subtle: #334155;
+            --border-medium: #334155;
+            --border-accent: rgba(251, 146, 60, 0.3);
+            --text-primary: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --text-tertiary: #64748b;
+            --accent: #fb923c;
             --accent-hover: #ffedd5;
-            
-            --code-bg: #020617;
-            --terminal-header: #1e293b;
+            --accent-dim: rgba(251, 146, 60, 0.05);
+            --accent-glow: rgba(251, 146, 60, 0.03);
+            --name-color: #60a5fa;
+            --link-color: #60a5fa;
+            --link-hover: #93bbfd;
+            --shadow-card: 0 4px 12px rgba(0,0,0,0.3);
+            --shadow-card-hover: 0 10px 25px -5px rgba(0,0,0,0.5);
+            --grain-opacity: 0;
+            --venue-bg: rgba(251, 146, 60, 0.08);
+            --venue-border: rgba(251, 146, 60, 0.2);
             --scroll-track: #0f172a;
             --scroll-thumb: #475569;
-            
+            --year-color: #334155;
+            --grid-line: rgba(255, 255, 255, 0.03);
             --btn-border: rgba(251, 146, 60, 0.3);
             --btn-bg: rgba(251, 146, 60, 0.05);
         }
 
-        /* --- Global Styles --- */
+        /* ══════════════════════════════════════════════
+           GLOBAL RESET & BASE
+           ══════════════════════════════════════════════ */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
         body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+            line-height: 1.6;
             overflow-x: hidden;
-            transition: background-color var(--transition-speed), color var(--transition-speed);
-            
-            /* Technical Grid Background */
-            background-image: 
+            transition: background-color 0.6s var(--ease-out-expo),
+                        color 0.4s var(--ease-out-expo);
+            background-image:
                 linear-gradient(var(--grid-line) 1px, transparent 1px),
                 linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
             background-size: 30px 30px;
             background-attachment: fixed;
         }
 
-        .container {
-            max-width: 900px;
+        /* Grain overlay - disabled */
+        body::after { display: none; }
+
+        a { color: inherit; text-decoration: none; transition: color 0.2s, opacity 0.2s; }
+
+        /* ══════════════════════════════════════════════
+           LAYOUT
+           ══════════════════════════════════════════════ */
+        .page-wrapper {
+            max-width: 920px;
             margin: 0 auto;
-            padding: 60px 20px;
-            position: relative;
-            z-index: 1;
+            padding: 0 28px;
         }
 
-        a { text-decoration: none; transition: 0.2s; color: inherit;}
-        
-        /* Highlighting Utilities */
-        .hl-name { color: var(--name-highlight); font-weight: 700; }
-        .hl-orange { color: var(--accent-orange); font-weight: 600; }
-        .hl-link { color: var(--name-highlight); border-bottom: 1px dashed var(--name-highlight); }
-        .hl-link:hover { border-bottom-style: solid; opacity: 0.8; }
-
-        /* --- Theme Toggle --- */
-        .theme-switch {
+        /* ══════════════════════════════════════════════
+           THEME TOGGLE
+           ══════════════════════════════════════════════ */
+        .theme-toggle {
             position: fixed;
-            top: 25px;
-            right: 25px;
-            z-index: 100;
-            background: var(--panel-bg);
-            border: 1px solid var(--panel-border);
-            color: var(--text-muted);
+            top: 24px;
+            right: 24px;
+            z-index: 1000;
             width: 42px;
             height: 42px;
             border-radius: 12px;
+            border: 1px solid var(--border-medium);
+            background: var(--bg-elevated);
+            color: var(--text-secondary);
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s var(--ease-out-expo);
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            transition: all 0.2s;
         }
-        .theme-switch:hover { transform: translateY(-2px); color: var(--accent-orange); border-color: var(--accent-orange); }
+        .theme-toggle:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
 
-        /* --- Header Area --- */
-        .header-grid {
+        /* ══════════════════════════════════════════════
+           BACK TO TOP
+           ══════════════════════════════════════════════ */
+        .back-to-top {
+            position: fixed;
+            bottom: 28px;
+            right: 24px;
+            z-index: 1000;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            border: 1px solid var(--border-medium);
+            background: var(--bg-elevated);
+            color: var(--text-tertiary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(12px);
+            transition: all 0.4s var(--ease-out-expo);
+            backdrop-filter: blur(12px);
+        }
+        .back-to-top.visible {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+        .back-to-top:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        /* ══════════════════════════════════════════════
+           HERO / HEADER
+           ══════════════════════════════════════════════ */
+        .hero {
+            padding: 60px 0 20px;
             display: grid;
             grid-template-columns: 180px 1fr;
             gap: 50px;
             align-items: start;
-            margin-bottom: 50px;
         }
 
-        /* Avatar Gizmo */
-        .avatar-wrapper {
+        /* Avatar Carousel */
+        .avatar-container {
             position: relative;
             width: 160px;
             height: 160px;
@@ -153,321 +222,582 @@
             top: 50%; left: 50%;
             transform: translate(-50%, -50%);
             border-radius: 50%;
-            border: 1px solid var(--text-muted);
-            opacity: 0.2;
             pointer-events: none;
         }
-        .ring-1 { width: 190px; height: 190px; border-color: var(--name-highlight); animation: spin 15s linear infinite; opacity: 0.4; }
-        .ring-2 { width: 210px; height: 210px; border-color: var(--accent-orange); animation: spin-rev 20s linear infinite; opacity: 0.4; }
-        
-        @keyframes spin { 0% { transform: translate(-50%, -50%) rotate(0deg) rotateX(60deg); } 100% { transform: translate(-50%, -50%) rotate(360deg) rotateX(60deg); } }
-        @keyframes spin-rev { 0% { transform: translate(-50%, -50%) rotate(0deg) rotateY(60deg); } 100% { transform: translate(-50%, -50%) rotate(-360deg) rotateY(60deg); } }
+        .ring-1 {
+            width: 190px; height: 190px;
+            border: 1px solid var(--name-color);
+            opacity: 0.4;
+            animation: spin 15s linear infinite;
+        }
+        .ring-2 {
+            width: 210px; height: 210px;
+            border: 1px solid var(--accent);
+            opacity: 0.4;
+            animation: spin-rev 20s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg) rotateX(60deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg) rotateX(60deg); }
+        }
+        @keyframes spin-rev {
+            0% { transform: translate(-50%, -50%) rotate(0deg) rotateY(60deg); }
+            100% { transform: translate(-50%, -50%) rotate(-360deg) rotateY(60deg); }
+        }
 
-        .avatar-img {
+        .avatar-carousel {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            z-index: 2;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--bg-primary);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+        .avatar-carousel img {
+            position: absolute;
+            inset: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: center 40%;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+        /* RGB photo stays centered */
+        .avatar-carousel img:first-child {
+            object-position: center center;
+        }
+        .avatar-carousel img.active {
+            opacity: 1;
+        }
+
+        /* Dot indicators */
+        .avatar-dots {
+            position: absolute;
+            bottom: -24px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            display: flex;
+            gap: 6px;
+        }
+        .avatar-dots span {
+            width: 6px;
+            height: 6px;
             border-radius: 50%;
-            border: 3px solid var(--panel-bg);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-            position: relative;
-            z-index: 2;
+            background: var(--text-tertiary);
+            cursor: pointer;
+            transition: all 0.3s;
+            opacity: 0.4;
+        }
+        .avatar-dots span.active {
+            background: var(--accent);
+            opacity: 1;
+            transform: scale(1.3);
         }
 
-        .intro h1 {
-            font-family: 'JetBrains Mono', monospace;
+        /* Identity Block */
+        .identity {}
+        .identity h1 {
+            font-family: var(--font-mono);
             font-size: 2.4rem;
-            margin: 0 0 12px 0;
+            font-weight: 700;
             letter-spacing: -1px;
-            color: var(--text-main);
+            line-height: 1.1;
+            margin-bottom: 4px;
         }
-        
-        .bio { 
-            color: var(--text-muted); 
-            line-height: 1.65; 
-            font-size: 0.95rem; 
+        .identity h1 .first-name {
+            color: var(--name-color);
         }
-        .bio p { margin-bottom: 10px; }
 
+        .identity .tagline {
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            color: var(--text-tertiary);
+            letter-spacing: 0.04em;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .bio {
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+            line-height: 1.72;
+        }
+        .bio p { margin-bottom: 12px; }
+        .bio a {
+            color: var(--link-color);
+            border-bottom: 1px dotted var(--link-color);
+            transition: all 0.2s;
+        }
+        .bio a:hover {
+            color: var(--link-hover);
+            border-bottom-style: solid;
+        }
+
+        /* Hiring Badge */
         .hiring-badge {
-            margin-top: 15px;
-            padding: 8px 12px;
-            background: var(--code-bg);
-            border-left: 3px solid var(--accent-orange);
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            font-family: 'JetBrains Mono', monospace;
-            display: inline-block;
+            margin-top: 18px;
+            padding: 10px 14px;
+            background: var(--accent-dim);
+            border-left: 2px solid var(--accent);
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            color: var(--text-secondary);
             border-radius: 0 6px 6px 0;
+            display: inline-block;
+            animation: badge-pulse 3s ease-in-out infinite;
+        }
+        .hiring-badge i { color: var(--accent); margin-right: 4px; }
+        @keyframes badge-pulse {
+            0%, 100% { box-shadow: 0 0 0 0 var(--accent-dim); }
+            50% { box-shadow: 0 0 0 6px transparent; }
         }
 
-        .social-bar { 
-            margin-top: 20px; 
-            display: flex; 
-            gap: 15px; 
+        /* Social Bar */
+        .social-bar {
+            margin-top: 22px;
+            display: flex;
+            gap: 10px;
             flex-wrap: wrap;
         }
         .social-btn {
-            color: var(--text-muted);
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            padding: 6px 12px;
-            border-radius: 6px;
-            transition: all 0.2s;
-            border: 1px solid var(--panel-border);
-            background: var(--panel-bg);
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            padding: 7px 14px;
+            border: 1px solid var(--border-medium);
+            border-radius: 8px;
+            background: var(--bg-elevated);
+            color: var(--text-secondary);
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 7px;
+            transition: all 0.25s var(--ease-out-expo);
         }
-        .social-btn i { color: var(--accent-orange); }
-        .social-btn:hover { 
-            border-color: var(--accent-orange);
-            color: var(--text-main);
+        .social-btn i { color: var(--accent); font-size: 0.85rem; }
+        .social-btn:hover {
+            border-color: var(--accent);
+            color: var(--text-primary);
             transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 12px var(--accent-dim);
         }
 
-        /* --- Section Header --- */
-        h2 {
-            font-family: 'JetBrains Mono', monospace;
+        /* ══════════════════════════════════════════════
+           SECTION HEADINGS
+           ══════════════════════════════════════════════ */
+        .section-heading {
+            font-family: var(--font-mono);
             font-size: 1.1rem;
-            color: var(--text-main);
-            border-bottom: 2px solid var(--panel-border);
+            font-weight: 700;
+            color: var(--text-primary);
+            border-bottom: 2px solid var(--border-subtle);
             padding-bottom: 10px;
-            margin: 50px 0 20px 0;
+            margin: 30px 0 16px;
             display: flex;
             align-items: center;
         }
-        h2::before {
+        .section-heading::before {
             content: ">";
-            color: var(--accent-orange);
+            color: var(--accent);
             margin-right: 10px;
             font-weight: 800;
         }
+        .section-heading::after { display: none; }
+        .section-heading span { color: var(--accent); }
 
-        /* --- Terminal News --- */
-        .terminal-panel {
-            background: var(--panel-bg);
-            border: 1px solid var(--panel-border);
-            border-radius: 8px;
+        /* ══════════════════════════════════════════════
+           TERMINAL / NEWS LOG
+           ══════════════════════════════════════════════ */
+        .terminal {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
             overflow: hidden;
-            font-family: 'JetBrains Mono', monospace;
-            box-shadow: var(--panel-hover-shadow);
+            box-shadow: var(--shadow-card);
         }
-        .terminal-header {
-            background: var(--terminal-header);
-            padding: 6px 12px;
-            border-bottom: 1px solid var(--panel-border);
-            font-size: 0.75rem;
-            color: var(--text-muted);
+        .terminal-bar {
             display: flex;
+            align-items: center;
             justify-content: space-between;
+            padding: 10px 16px;
+            border-bottom: 1px solid var(--border-subtle);
+            background: var(--bg-surface);
         }
-        
+        .terminal-dots {
+            display: flex;
+            gap: 6px;
+        }
+        .terminal-dots span {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--border-medium);
+        }
+        .terminal-dots span:first-child { background: #e5534b; }
+        .terminal-dots span:nth-child(2) { background: #d29922; }
+        .terminal-dots span:last-child { background: #57ab5a; }
+        .terminal-title {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--text-tertiary);
+        }
+        .terminal-title .cursor-blink {
+            display: inline-block;
+            width: 6px;
+            height: 13px;
+            background: var(--accent);
+            margin-left: 4px;
+            vertical-align: middle;
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
         .terminal-body {
-            padding: 0;
-            /* Height calculation: Approx 5 items * 32px per item height + padding */
-            max-height: 180px; 
+            max-height: 240px;
             overflow-y: auto;
-            background: var(--code-bg);
+            background: var(--bg-secondary);
         }
-        
-        /* Scrollbar Styling */
-        .terminal-body::-webkit-scrollbar { width: 6px; }
+        .terminal-body::-webkit-scrollbar { width: 5px; }
         .terminal-body::-webkit-scrollbar-track { background: var(--scroll-track); }
         .terminal-body::-webkit-scrollbar-thumb { background: var(--scroll-thumb); border-radius: 3px; }
-        .terminal-body::-webkit-scrollbar-thumb:hover { background: var(--accent-orange); }
 
         .log-entry {
-            padding: 8px 15px;
+            padding: 9px 18px;
             display: flex;
             align-items: baseline;
-            font-size: 0.8rem;
-            border-bottom: 1px dashed var(--grid-line);
-            transition: all 0.2s ease;
-            cursor: default;
+            gap: 16px;
+            font-size: 0.82rem;
+            border-bottom: 1px solid var(--border-subtle);
+            transition: all 0.2s var(--ease-out-expo);
         }
         .log-entry:last-child { border-bottom: none; }
-        
-        /* News Hover Effect */
         .log-entry:hover {
-            background: rgba(255, 107, 0, 0.03); /* Very subtle orange tint */
-            transform: translateX(5px);
-            border-left: 2px solid var(--accent-orange);
-            padding-left: 13px; /* Adjust for border */
+            background: var(--accent-glow);
+            padding-left: 22px;
         }
-
-        .log-time { 
-            color: var(--accent-orange); 
-            min-width: 90px; 
-            font-weight: 600; 
-        }
-        .log-content { color: var(--text-muted); }
-        .log-content b { color: var(--text-main); font-weight: 600; }
-        .log-content a { color: var(--name-highlight); border-bottom: 1px dotted; }
-
-        /* --- Publications --- */
-        .paper-list { display: flex; flex-direction: column; gap: 15px; }
-
-        .paper-item {
-            background: var(--panel-bg);
-            border: 1px solid var(--panel-border);
-            padding: 20px;
-            border-radius: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            transition: all 0.2s ease;
-        }
-
-        .paper-item:hover {
-            border-color: var(--accent-orange);
-            transform: translateY(-2px);
-            box-shadow: var(--panel-hover-shadow);
-        }
-
-        .paper-content { flex: 1; padding-right: 25px; }
-
-        .paper-title {
-            display: block;
-            font-size: 1.05rem;
-            font-weight: 600;
-            color: var(--text-main);
-            margin-bottom: 8px;
-            line-height: 1.4;
-        }
-
-        .paper-authors {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-bottom: 10px;
-            line-height: 1.5;
-        }
-        /* Highlight my name */
-        .paper-authors .me { color: var(--name-highlight); font-weight: 700; }
-
-        .paper-meta {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            color: var(--text-muted);
-            flex-wrap: wrap;
-        }
-
-        .venue { 
-            color: var(--text-main);
-            background: var(--code-bg);
-            border: 1px solid var(--panel-border);
-            padding: 2px 8px; 
-            border-radius: 4px; 
+        .log-time {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--accent);
+            min-width: 80px;
+            flex-shrink: 0;
             font-weight: 500;
         }
-        .tag-spotlight { color: var(--accent-orange); font-weight: 700; }
-        .tag-oral { color: var(--accent-orange); font-weight: 700; }
+        .log-content {
+            color: var(--text-secondary);
+            font-family: var(--font-sans);
+        }
+        .log-content b { color: var(--text-primary); font-weight: 600; }
+        .log-content a { color: var(--link-color); border-bottom: 1px dotted; }
+        .log-content a:hover { border-bottom-style: solid; }
 
-        /* Buttons */
-        .paper-links {
+        /* ══════════════════════════════════════════════
+           PUBLICATIONS
+           ══════════════════════════════════════════════ */
+        .pub-section { margin-top: 28px; }
+
+        /* Year Group */
+        .year-group {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 0;
+            margin-bottom: 0;
+        }
+        .year-label {
+            font-family: var(--font-mono);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--year-color);
+            position: sticky;
+            top: 24px;
+            align-self: start;
+            padding-top: 16px;
+            line-height: 1;
+            text-align: right;
+            padding-right: 20px;
+            user-select: none;
+            transition: color 0.3s;
+        }
+        .year-group:hover .year-label { color: var(--accent); }
+
+        .year-papers {
             display: flex;
-            flex-direction: column; 
-            gap: 8px;
-            min-width: 90px;
-            align-items: flex-end;
+            flex-direction: column;
+            gap: 12px;
+            padding: 12px 0 32px;
+            border-left: 1px solid var(--border-subtle);
+            padding-left: 24px;
         }
 
-        .btn {
-            display: inline-flex;
+        .paper-card {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-subtle);
+            border-radius: 10px;
+            padding: 18px 20px;
+            transition: all 0.3s var(--ease-out-expo);
+        }
+        .paper-card:hover {
+            border-color: var(--border-accent);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-card-hover);
+        }
+
+        .paper-info { }
+
+        .paper-title {
+            font-family: var(--font-sans);
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.45;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .paper-authors {
+            font-size: 0.82rem;
+            color: var(--text-tertiary);
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+        .paper-authors .me {
+            color: var(--name-color);
+            font-weight: 600;
+        }
+
+        /* Bottom row: venue left, links right */
+        .paper-bottom {
+            display: flex;
             align-items: center;
             gap: 8px;
-            padding: 6px 12px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.75rem;
-            color: var(--accent-orange); /* All Icons/Text Orange */
-            background: var(--btn-bg);
-            border: 1px solid var(--btn-border);
-            border-radius: 6px;
-            text-transform: uppercase;
+            flex-wrap: wrap;
+        }
+        .venue-tag {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            padding: 3px 9px;
+            background: var(--venue-bg);
+            border: 1px solid var(--venue-border);
+            border-radius: 4px;
+            color: var(--accent);
+            font-weight: 500;
+        }
+        .award-tag {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
             font-weight: 600;
-            transition: all 0.2s;
-            white-space: nowrap;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
-        
-        .btn:hover {
-            background: var(--accent-orange);
-            color: #fff;
-            border-color: var(--accent-orange);
-        }
-        .btn i { color: inherit; } /* Icons inherit hover color */
-
-        /* --- Footer --- */
-        footer {
-            margin-top: 80px;
-            text-align: center;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            padding-bottom: 40px;
-            border-top: 1px dashed var(--panel-border);
-            padding-top: 30px;
-        }
-        
-        .footer-logo {
-            display: inline-flex;
+        .paper-links-inline {
+            display: flex;
             align-items: center;
             gap: 6px;
-            margin-top: 10px;
-            opacity: 0.8;
+            margin-left: auto;
         }
-        .footer-logo i { color: var(--accent-orange); }
 
-        /* Mobile */
+        .paper-btn {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            font-weight: 600;
+            padding: 3px 10px;
+            border: 1px solid var(--btn-border);
+            border-radius: 4px;
+            color: var(--accent);
+            background: var(--btn-bg);
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.2s var(--ease-out-expo);
+            white-space: nowrap;
+            text-transform: uppercase;
+        }
+        .paper-btn:hover {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+        }
+        .paper-btn .star-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 2px;
+            margin-left: 1px;
+            padding-left: 5px;
+            border-left: 1px solid currentColor;
+            opacity: 0.8;
+            font-size: 0.65rem;
+        }
+        .paper-btn .star-icon {
+            font-size: 0.5rem;
+        }
+        .paper-btn .star-count {
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* ══════════════════════════════════════════════
+           FOOTER
+           ══════════════════════════════════════════════ */
+        footer {
+            margin-top: 80px;
+            padding: 32px 0 48px;
+            border-top: 1px solid var(--border-subtle);
+            text-align: center;
+        }
+        footer p {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--text-tertiary);
+            line-height: 1.7;
+        }
+        footer .footer-accent { color: var(--accent); }
+
+        /* ══════════════════════════════════════════════
+           ENTRANCE ANIMATIONS
+           ══════════════════════════════════════════════ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s var(--ease-out-expo),
+                        transform 0.7s var(--ease-out-expo);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Page load stagger */
+        .hero-reveal {
+            opacity: 0;
+            transform: translateY(32px);
+            animation: hero-enter 0.8s var(--ease-out-expo) forwards;
+        }
+        .hero-reveal:nth-child(1) { animation-delay: 0.1s; }
+        .hero-reveal:nth-child(2) { animation-delay: 0.25s; }
+
+        @keyframes hero-enter {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ══════════════════════════════════════════════
+           REDUCED MOTION
+           ══════════════════════════════════════════════ */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            .reveal { opacity: 1; transform: none; }
+            .hero-reveal { opacity: 1; transform: none; animation: none; }
+            html { scroll-behavior: auto; }
+        }
+
+        /* ══════════════════════════════════════════════
+           RESPONSIVE
+           ══════════════════════════════════════════════ */
         @media (max-width: 768px) {
-            .header-grid { grid-template-columns: 1fr; text-align: center; gap: 20px; }
-            .avatar-wrapper { margin: 0 auto; }
-            .paper-item { flex-direction: column; }
-            .paper-links { flex-direction: row; margin-top: 15px; align-items: center; width: 100%; justify-content: flex-start; flex-wrap: wrap;}
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 80px 0 40px;
+                gap: 28px;
+                text-align: center;
+            }
+            .avatar-container {
+                margin: 0 auto;
+                width: 140px;
+                height: 140px;
+            }
+            .identity h1 { font-size: 2.3rem; }
             .social-bar { justify-content: center; }
-            .hiring-badge { border-left: none; border-top: 3px solid var(--accent-orange); border-radius: 0 0 6px 6px;}
+            .hiring-badge { border-left: none; border-top: 2px solid var(--accent); border-radius: 0 0 6px 6px; }
+
+            .year-group {
+                grid-template-columns: 1fr;
+            }
+            .year-label {
+                position: static;
+                font-size: 1.8rem;
+                text-align: left;
+                padding: 16px 0 4px 0;
+                border-bottom: 1px solid var(--border-subtle);
+                margin-bottom: 0;
+            }
+            .year-papers {
+                border-left: none;
+                padding-left: 0;
+            }
+
+            .paper-card {
+                padding: 14px 16px;
+            }
+
+            .theme-toggle {
+                top: 16px;
+                right: 16px;
+                width: 38px;
+                height: 38px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-wrapper { padding: 0 16px; }
+            .identity h1 { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
 
     <!-- Theme Toggle -->
-    <button class="theme-switch" id="theme-toggle" aria-label="Toggle Theme">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Theme">
         <i class="fas fa-sun"></i>
     </button>
 
-    <div class="container">
-        
-        <!-- Header -->
-        <header class="header-grid">
-            <div class="avatar-wrapper">
+    <!-- Back to Top -->
+    <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <div class="page-wrapper">
+
+        <!-- ═══ HERO ═══ -->
+        <header class="hero">
+            <div class="avatar-container hero-reveal">
                 <div class="gizmo-ring ring-1"></div>
                 <div class="gizmo-ring ring-2"></div>
-                <img src="./images/me_italy.jpg" alt="Xintong Han" class="avatar-img">
+                <div class="avatar-carousel" id="avatar-carousel">
+                    <img src="./images/me_italy.jpg" alt="RGB" class="active" data-label="RGB">
+                    <img src="./images/me_normal.jpg" alt="Normal" data-label="Normal">
+                    <img src="./images/me_depth.jpg" alt="Depth" data-label="Depth">
+                    <img src="./images/me_3d.jpg" alt="3D Render" data-label="3D">
+                    <img src="./images/me_wireframe.jpg" alt="Wireframe" data-label="Wireframe">
+                </div>
+                <div class="avatar-dots" id="avatar-dots">
+                    <span class="active"></span><span></span><span></span><span></span><span></span>
+                </div>
             </div>
 
-            <div class="intro">
-                <h1><span class="hl-name">Xintong</span> Han</h1>
+            <div class="identity hero-reveal">
+                <h1><span class="first-name">Xintong</span> Han</h1>
+                <div class="tagline">Computer Vision &middot; Generative AI &middot; 3D Reconstruction</div>
+
                 <div class="bio">
                     <p>
-                        I am a researcher at the <a href="https://3d.hunyuan.tencent.com/" class="hl-link" target="_blank">Tencent Hunyuan 3D Generation Team</a>. 
-                        Previously, I was a Senior Tech Lead Manager at <a href="http://ir.huya.com/" class="hl-link">Huya Inc</a> (2019-2025) and a Research Scientist at <a href="https://www.malong.com/en/home" class="hl-link">Malong Technologies</a> (2018-2019).
+                        I am a researcher at the <a href="https://3d.hunyuan.tencent.com/" target="_blank">Tencent Hunyuan 3D Generation Team</a>.
+                        Previously, I was a Senior Tech Lead Manager at <a href="http://ir.huya.com/">Huya Inc</a> (2019-2025) and a Research Scientist at <a href="https://www.malong.com/en/home">Malong Technologies</a> (2018-2019).
                     </p>
                     <p>
-                        I obtained my Ph.D. from the <a href="http://www.umd.edu/" class="hl-link">University of Maryland, College Park</a>, advised by <a href="http://www.umiacs.umd.edu/~lsd/" class="hl-link">Prof. Larry S. Davis</a>. 
-                        During my Ph.D., I completed two awesome internships at Google. 
-                        Prior to that, I received my B.S. degree from <a href="http://en.sjtu.edu.cn/" class="hl-link">Shanghai Jiao Tong University</a>, advised by <a href="http://weiyaolin.github.io/" class="hl-link">Prof. Weiyao Lin</a>.
+                        I obtained my Ph.D. from the <a href="http://www.umd.edu/">University of Maryland, College Park</a>, advised by <a href="http://www.umiacs.umd.edu/~lsd/">Prof. Larry S. Davis</a>.
+                        During my Ph.D., I completed two awesome internships at Google.
+                        Prior to that, I received my B.S. degree from <a href="http://en.sjtu.edu.cn/">Shanghai Jiao Tong University</a>, advised by <a href="http://weiyaolin.github.io/">Prof. Weiyao Lin</a>.
                     </p>
-                    
+
                     <div class="hiring-badge">
-                        <i class="fas fa-code"></i> HIRING: Multimodal GenAI Researchers/Interns in Shenzhen/Beijing/Shanghai.
+                        <i class="fas fa-terminal"></i> HIRING: Multimodal GenAI Researchers/Interns in Shenzhen/Beijing/Shanghai.
                     </div>
                 </div>
-                
+
                 <div class="social-bar">
                     <a href="mailto:hixintonghan@gmail.com" class="social-btn">
                         <i class="fas fa-envelope"></i> Email
@@ -482,14 +812,18 @@
             </div>
         </header>
 
-        <!-- News Log -->
-        <h2>System Log</h2>
-        <div class="terminal-panel">
-            <div class="terminal-header">
-                <span><i class="fas fa-terminal"></i> system_log.txt</span>
-                <span>--lines=5</span>
+        <!-- ═══ NEWS LOG ═══ -->
+        <div class="section-heading reveal">System Log</div>
+        <div class="terminal reveal">
+            <div class="terminal-bar">
+                <div class="terminal-dots"><span></span><span></span><span></span></div>
+                <div class="terminal-title">~/research/updates.log <span class="cursor-blink"></span></div>
             </div>
             <div class="terminal-body">
+                <div class="log-entry">
+                    <span class="log-time">Apr 2026</span>
+                    <span class="log-content">Two papers accepted by CVPR 2026: <a href="https://arxiv.org/abs/2511.16957">MatPedia</a> & <a href="https://arxiv.org/abs/2512.16900">FlashPortrait</a>.</span>
+                </div>
                 <div class="log-entry">
                     <span class="log-time">Oct 2025</span>
                     <span class="log-content">Will serve as an Area Chair at CVPR 2026.</span>
@@ -510,14 +844,13 @@
                     <span class="log-time">Mar 2023</span>
                     <span class="log-content">Cloth4D accepted by CVPR 2023.</span>
                 </div>
-                <!-- History -->
                 <div class="log-entry">
                     <span class="log-time">Jan 2023</span>
                     <span class="log-content">MotionFormer accepted by ICLR 2023.</span>
                 </div>
                 <div class="log-entry">
                     <span class="log-time">Oct 2022</span>
-                    <span class="log-content">FFCLIP accepted as a Spotlight by NeurIPS 2022.</span>
+                    <span class="log-content">FFCLIP accepted as a <b>Spotlight</b> by NeurIPS 2022.</span>
                 </div>
                 <div class="log-entry">
                     <span class="log-time">Mar 2022</span>
@@ -533,7 +866,7 @@
                 </div>
                 <div class="log-entry">
                     <span class="log-time">Sep 2020</span>
-                    <span class="log-content">PGNet accepted by ACCV 2020 as an <b class="hl-orange">Oral</b>.</span>
+                    <span class="log-content">PGNet accepted by ACCV 2020 as an <b>Oral</b>.</span>
                 </div>
                 <div class="log-entry">
                     <span class="log-time">Jul 2020</span>
@@ -570,524 +903,780 @@
             </div>
         </div>
 
-        <!-- Publications -->
-        <h2>Selected Publications</h2>
-        
-        <div class="paper-list">
+        <!-- ═══ PUBLICATIONS ═══ -->
+        <div class="section-heading reveal">Selected Publications</div>
+
+        <div class="pub-section">
+
+            <!-- 2026 -->
+            <div class="year-group reveal">
+                <div class="year-label">2026</div>
+                <div class="year-papers">
+
+                    <div class="paper-card">
+                        <div class="paper-info">
+                            <span class="paper-title">MatPedia: A Universal Generative Foundation for High-Fidelity Material Synthesis</span>
+                            <div class="paper-authors">Di Luo, Shuhui Yang, Mingxin Yang, Jiawei Lu, Yixuan Tang, <span class="me">Xintong Han</span>, Zhuo Chen, Beibei Wang, Chunchao Guo</div>
+                            <div class="paper-bottom">
+                                <span class="venue-tag">CVPR 2026</span>
+                                <div class="paper-links-inline">
+                                    <a href="https://arxiv.org/pdf/2511.16957" class="paper-btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="paper-card">
+                        <div class="paper-info">
+                            <span class="paper-title">FlashPortrait: 6x Faster Infinite Portrait Animation with Adaptive Latent Prediction</span>
+                            <div class="paper-authors">Shuyuan Tu, Yueming Pan, Yinming Huang, <span class="me">Xintong Han</span>, Zhen Xing, Qi Dai, Kai Qiu, Chong Luo, Zuxuan Wu</div>
+                            <div class="paper-bottom">
+                                <span class="venue-tag">CVPR 2026</span>
+                                <div class="paper-links-inline">
+                                    <a href="https://arxiv.org/pdf/2512.16900" class="paper-btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                                    <a href="https://github.com/Francis-Rings/FlashPortrait" class="paper-btn" data-repo="Francis-Rings/FlashPortrait"><i class="fab fa-github"></i> Code <span class="star-badge"><i class="fas fa-star star-icon"></i> <span class="star-count">--</span></span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
 
             <!-- 2025 -->
-            <div class="paper-item">
-                <div class="paper-content">
-                    <span class="paper-title">Hunyuan3D Studio: End-to-End AI Pipeline for Game-Ready 3D Asset Generation</span>
-                    <div class="paper-authors">Hunyuan 3D Team</div>
-                    <div class="paper-meta">
-                        <span class="venue">Arxiv 2025</span>
-                    </div>
-                </div>
-                <div class="paper-links">
-                    <a href="https://arxiv.org/pdf/2509.12815" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
-                </div>
-            </div>
+            <div class="year-group reveal">
+                <div class="year-label">2025</div>
+                <div class="year-papers">
 
-            <div class="paper-item">
-                <div class="paper-content">
-                    <span class="paper-title">StableAvatar: Infinite-Length Audio-Driven Avatar Video Generation</span>
-                    <div class="paper-authors">Shuyuan Tu, Yueming Pan, Yinming Huang, <span class="me">Xintong Han</span>, Zhen Xing, Qi Dai, Chong Luo, Zuxuan Wu, Yu-Gang Jiang</div>
-                    <div class="paper-meta">
-                        <span class="venue">Arxiv 2025</span>
+                    <div class="paper-card">
+                        <div class="paper-info">
+                            <span class="paper-title">Hunyuan3D Studio: End-to-End AI Pipeline for Game-Ready 3D Asset Generation</span>
+                            <div class="paper-authors">Hunyuan 3D Team</div>
+                            <div class="paper-bottom">
+                                <span class="venue-tag">Arxiv 2025</span>
+                                <div class="paper-links-inline">
+                                    <a href="https://arxiv.org/pdf/2509.12815" class="paper-btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="paper-links">
-                    <a href="https://arxiv.org/pdf/2508.08248" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
-                    <a href="https://github.com/Francis-Rings/StableAvatar" class="btn"><i class="fab fa-github"></i> CODE</a>
-                </div>
-            </div>
 
-            <div class="paper-item">
-                <div class="paper-content">
-                    <span class="paper-title">StableAnimator: High-Quality Identity-Preserving Human Image Animation</span>
-                    <div class="paper-authors">Shuyuan Tu, Zhen Xing, <span class="me">Xintong Han</span>, Zhi-Qi Cheng, Qi Dai, Chong Luo, Zuxuan Wu</div>
-                    <div class="paper-meta">
-                        <span class="venue">CVPR 2025</span>
+                    <div class="paper-card">
+                        <div class="paper-info">
+                            <span class="paper-title">StableAvatar: Infinite-Length Audio-Driven Avatar Video Generation</span>
+                            <div class="paper-authors">Shuyuan Tu, Yueming Pan, Yinming Huang, <span class="me">Xintong Han</span>, Zhen Xing, Qi Dai, Chong Luo, Zuxuan Wu, Yu-Gang Jiang</div>
+                            <div class="paper-bottom">
+                                <span class="venue-tag">Arxiv 2025</span>
+                                <div class="paper-links-inline">
+                                    <a href="https://arxiv.org/pdf/2508.08248" class="paper-btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                                    <a href="https://github.com/Francis-Rings/StableAvatar" class="paper-btn" data-repo="Francis-Rings/StableAvatar"><i class="fab fa-github"></i> Code <span class="star-badge"><i class="fas fa-star star-icon"></i> <span class="star-count">--</span></span></a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="paper-links">
-                    <a href="https://arxiv.org/pdf/2411.17697" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
-                    <a href="https://github.com/Francis-Rings/StableAnimator" class="btn"><i class="fab fa-github"></i> CODE</a>
-                </div>
-            </div>
 
-            <div class="paper-item">
-                <div class="paper-content">
-                    <span class="paper-title">MotionFollower: Editing Video Motion via Lightweight Score-Guided Diffusion</span>
-                    <div class="paper-authors">Shuyuan Tu, Qi Dai, Zihao Zhang, Sicheng Xie, Zhi-Qi Cheng, Chong Luo, <span class="me">Xintong Han</span>, Zuxuan Wu, Yu-Gang Jiang</div>
-                    <div class="paper-meta">
-                        <span class="venue">ICCV 2025</span>
+                    <div class="paper-card">
+                        <div class="paper-info">
+                            <span class="paper-title">StableAnimator: High-Quality Identity-Preserving Human Image Animation</span>
+                            <div class="paper-authors">Shuyuan Tu, Zhen Xing, <span class="me">Xintong Han</span>, Zhi-Qi Cheng, Qi Dai, Chong Luo, Zuxuan Wu</div>
+                            <div class="paper-bottom">
+                                <span class="venue-tag">CVPR 2025</span>
+                                <div class="paper-links-inline">
+                                    <a href="https://arxiv.org/pdf/2411.17697" class="paper-btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                                    <a href="https://github.com/Francis-Rings/StableAnimator" class="paper-btn" data-repo="Francis-Rings/StableAnimator"><i class="fab fa-github"></i> Code <span class="star-badge"><i class="fas fa-star star-icon"></i> <span class="star-count">--</span></span></a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="paper-links">
-                    <a href="https://arxiv.org/pdf/2405.20325" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
-                    <a href="https://github.com/Francis-Rings/MotionFollower" class="btn"><i class="fab fa-github"></i> CODE</a>
+
+                    <div class="paper-card">
+                        <div class="paper-info">
+                            <span class="paper-title">MotionFollower: Editing Video Motion via Lightweight Score-Guided Diffusion</span>
+                            <div class="paper-authors">Shuyuan Tu, Qi Dai, Zihao Zhang, Sicheng Xie, Zhi-Qi Cheng, Chong Luo, <span class="me">Xintong Han</span>, Zuxuan Wu, Yu-Gang Jiang</div>
+                            <div class="paper-bottom">
+                                <span class="venue-tag">ICCV 2025</span>
+                                <div class="paper-links-inline">
+                                    <a href="https://arxiv.org/pdf/2405.20325" class="paper-btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                                    <a href="https://github.com/Francis-Rings/MotionFollower" class="paper-btn" data-repo="Francis-Rings/MotionFollower"><i class="fab fa-github"></i> Code <span class="star-badge"><i class="fas fa-star star-icon"></i> <span class="star-count">--</span></span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
             <!-- 2024 -->
-            <div class="paper-item">
-                <div class="paper-content">
-                    <span class="paper-title">MotionEditor: Editing Video Motion via Content-aware Diffusion</span>
-                    <div class="paper-authors">Shuyuan Tu, Qi Dai, Zhi-Qi Cheng, Han Hu, <span class="me">Xintong Han</span>, Zuxuan Wu, Yu-Gang Jiang</div>
-                    <div class="paper-meta">
-                        <span class="venue">CVPR 2024</span>
+            <div class="year-group reveal">
+                <div class="year-label">2024</div>
+                <div class="year-papers">
+
+                    <div class="paper-card">
+                        <div class="paper-info">
+                            <span class="paper-title">MotionEditor: Editing Video Motion via Content-aware Diffusion</span>
+                            <div class="paper-authors">Shuyuan Tu, Qi Dai, Zhi-Qi Cheng, Han Hu, <span class="me">Xintong Han</span>, Zuxuan Wu, Yu-Gang Jiang</div>
+                            <div class="paper-bottom">
+                                <span class="venue-tag">CVPR 2024</span>
+                                <div class="paper-links-inline">
+                                    <a href="https://openaccess.thecvf.com/content/CVPR2024/papers/Tu_MotionEditor_Editing_Video_Motion_via_Content-Aware_Diffusion_CVPR_2024_paper.pdf" class="paper-btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                                    <a href="https://github.com/Francis-Rings/MotionEditor" class="paper-btn" data-repo="Francis-Rings/MotionEditor"><i class="fab fa-github"></i> Code <span class="star-badge"><i class="fas fa-star star-icon"></i> <span class="star-count">--</span></span></a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="paper-links">
-                    <a href="https://openaccess.thecvf.com/content/CVPR2024/papers/Tu_MotionEditor_Editing_Video_Motion_via_Content-Aware_Diffusion_CVPR_2024_paper.pdf" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
-                    <a href="https://github.com/Francis-Rings/MotionEditor" class="btn"><i class="fab fa-github"></i> CODE</a>
+
                 </div>
             </div>
 
             <!-- 2023 -->
-            <div class="paper-item">
-                <div class="paper-content">
-                    <span class="paper-title">CLOTH4D: A Dataset for Clothed Human Reconstruction</span>
-                    <div class="paper-authors">Xingxing Zou*, <span class="me">Xintong Han*</span>, Waikeung Wong</div>
-                    <div class="paper-meta">
-                        <span class="venue">CVPR 2023</span>
-                    </div>
-                </div>
-                <div class="paper-links">
-                    <a href="https://openaccess.thecvf.com/content/CVPR2023/papers/Zou_CLOTH4D_A_Dataset_for_Clothed_Human_Reconstruction_CVPR_2023_paper.pdf" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
-                    <a href="https://github.com/AemikaChow/CLOTH4D" class="btn"><i class="fab fa-github"></i> CODE</a>
-                </div>
-            </div>
+            <div class="year-group reveal">
+                <div class="year-label">2023</div>
+                <div class="year-papers">
 
-            <div class="paper-item">
-                <div class="paper-content">
-                    <span class="paper-title">XFormer: Fast and Accurate Monocular 3D Body Capture</span>
-                    <div class="paper-authors">Lihui Qian, <span class="me">Xintong Han</span>, Faqiang Wang, Hongyu Liu, Haoye Dong, Zhiwen Li, Huawei Wei, Zhe Lin, Cheng-Bin Jin</div>
-                    <div class="paper-meta">
-                        <span class="venue">IJCAI 2023</span>
+                    <div class="paper-card">
+                        <div class="paper-info">
+                            <span class="paper-title">CLOTH4D: A Dataset for Clothed Human Reconstruction</span>
+                            <div class="paper-authors">Xingxing Zou*, <span class="me">Xintong Han*</span>, Waikeung Wong</div>
+                            <div class="paper-bottom">
+                                <span class="venue-tag">CVPR 2023</span>
+                                <div class="paper-links-inline">
+                                    <a href="https://openaccess.thecvf.com/content/CVPR2023/papers/Zou_CLOTH4D_A_Dataset_for_Clothed_Human_Reconstruction_CVPR_2023_paper.pdf" class="paper-btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                                    <a href="https://github.com/AemikaChow/CLOTH4D" class="paper-btn" data-repo="AemikaChow/CLOTH4D"><i class="fab fa-github"></i> Code <span class="star-badge"><i class="fas fa-star star-icon"></i> <span class="star-count">--</span></span></a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="paper-links">
-                    <a href="https://arxiv.org/pdf/2305.11101.pdf" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
-                </div>
-            </div>
 
-            <div class="paper-item">
-                <div class="paper-content">
-                    <span class="paper-title">CoverHunter: Cover Song Identification with Refined Attention and Alignments</span>
-                    <div class="paper-authors">Feng Liu, Deyi Tuo, Yinan Xu, <span class="me">Xintong Han</span></div>
-                    <div class="paper-meta">
-                        <span class="venue">ICME 2023</span>
+                    <div class="paper-card">
+                        <div class="paper-info">
+                            <span class="paper-title">XFormer: Fast and Accurate Monocular 3D Body Capture</span>
+                            <div class="paper-authors">Lihui Qian, <span class="me">Xintong Han</span>, Faqiang Wang, Hongyu Liu, Haoye Dong, Zhiwen Li, Huawei Wei, Zhe Lin, Cheng-Bin Jin</div>
+                            <div class="paper-bottom">
+                                <span class="venue-tag">IJCAI 2023</span>
+                                <div class="paper-links-inline">
+                                    <a href="https://arxiv.org/pdf/2305.11101.pdf" class="paper-btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="paper-links">
-                    <a href="https://arxiv.org/pdf/2306.09025.pdf" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
-                    <a href="https://github.com/Liu-Feng-deeplearning/CoverHunter" class="btn"><i class="fab fa-github"></i> CODE</a>
-                </div>
-            </div>
 
-            <div class="paper-item">
-                <div class="paper-content">
-                    <span class="paper-title">Human MotionFormer: Transferring Human Motions with Vision Transformers</span>
-                    <div class="paper-authors">Hongyu Liu, <span class="me">Xintong Han</span>, Chenbin Jin, Lihui Qian, Huawei Wei, Zhe Lin, Faqiang Wang, Haoye Dong, Yibing Song, Jia Xu, Qifeng Chen</div>
-                    <div class="paper-meta">
-                        <span class="venue">ICLR 2023</span>
+                    <div class="paper-card">
+                        <div class="paper-info">
+                            <span class="paper-title">CoverHunter: Cover Song Identification with Refined Attention and Alignments</span>
+                            <div class="paper-authors">Feng Liu, Deyi Tuo, Yinan Xu, <span class="me">Xintong Han</span></div>
+                            <div class="paper-bottom">
+                                <span class="venue-tag">ICME 2023</span>
+                                <div class="paper-links-inline">
+                                    <a href="https://arxiv.org/pdf/2306.09025.pdf" class="paper-btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                                    <a href="https://github.com/Liu-Feng-deeplearning/CoverHunter" class="paper-btn" data-repo="Liu-Feng-deeplearning/CoverHunter"><i class="fab fa-github"></i> Code <span class="star-badge"><i class="fas fa-star star-icon"></i> <span class="star-count">--</span></span></a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="paper-links">
-                    <a href="https://openreview.net/forum?id=lQVpasnQS62" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
+
+                    <div class="paper-card">
+                        <div class="paper-info">
+                            <span class="paper-title">Human MotionFormer: Transferring Human Motions with Vision Transformers</span>
+                            <div class="paper-authors">Hongyu Liu, <span class="me">Xintong Han</span>, Chenbin Jin, Lihui Qian, Huawei Wei, Zhe Lin, Faqiang Wang, Haoye Dong, Yibing Song, Jia Xu, Qifeng Chen</div>
+                            <div class="paper-bottom">
+                                <span class="venue-tag">ICLR 2023</span>
+                                <div class="paper-links-inline">
+                                    <a href="https://openreview.net/forum?id=lQVpasnQS62" class="paper-btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
             <!-- 2022 -->
-            <div class="paper-item">
-                <div class="paper-content">
-                    <span class="paper-title">One Model to Edit Them All: Free-Form Text-Driven Image Manipulation with Semantic Modulations</span>
-                    <div class="paper-authors">Yiming Zhu, Hongyu Liu, Yibing Song, Ziyang Yuan, <span class="me">Xintong Han</span>, Chun Yuan, Qifeng Chen, Jue Wang</div>
-                    <div class="paper-meta">
-                        <span class="venue">NeurIPS 2022</span>
-                        <span class="tag-spotlight">Spotlight</span>
-                    </div>
-                </div>
-                <div class="paper-links">
-                    <a href="https://arxiv.org/pdf/2210.07883.pdf" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
-                    <a href="https://github.com/KumapowerLIU/FFCLIP" class="btn"><i class="fab fa-github"></i> CODE</a>
-                </div>
-            </div>
+            <div class="year-group reveal">
+                <div class="year-label">2022</div>
+                <div class="year-papers">
 
-            <div class="paper-item">
-                <div class="paper-content">
-                    <span class="paper-title">ObjectFormer for Image Manipulation Detection and Localization</span>
-                    <div class="paper-authors">Junke Wang, Zuxuan Wu, Jingjing Chen, <span class="me">Xintong Han</span>, Abhinav Shrivastava, Ser-Nam Lim, Yu-Gang Jiang</div>
-                    <div class="paper-meta">
-                        <span class="venue">CVPR 2022</span>
+                    <div class="paper-card">
+                        <div class="paper-info">
+                            <span class="paper-title">One Model to Edit Them All: Free-Form Text-Driven Image Manipulation with Semantic Modulations</span>
+                            <div class="paper-authors">Yiming Zhu, Hongyu Liu, Yibing Song, Ziyang Yuan, <span class="me">Xintong Han</span>, Chun Yuan, Qifeng Chen, Jue Wang</div>
+                            <div class="paper-bottom">
+                                <span class="venue-tag">NeurIPS 2022</span>
+                                <span class="award-tag">Spotlight</span>
+                                <div class="paper-links-inline">
+                                    <a href="https://arxiv.org/pdf/2210.07883.pdf" class="paper-btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                                    <a href="https://github.com/KumapowerLIU/FFCLIP" class="paper-btn" data-repo="KumapowerLIU/FFCLIP"><i class="fab fa-github"></i> Code <span class="star-badge"><i class="fas fa-star star-icon"></i> <span class="star-count">--</span></span></a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="paper-links">
-                    <a href="https://openaccess.thecvf.com/content/CVPR2022/html/Wang_ObjectFormer_for_Image_Manipulation_Detection_and_Localization_CVPR_2022_paper.html" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
+
+                    <div class="paper-card">
+                        <div class="paper-info">
+                            <span class="paper-title">ObjectFormer for Image Manipulation Detection and Localization</span>
+                            <div class="paper-authors">Junke Wang, Zuxuan Wu, Jingjing Chen, <span class="me">Xintong Han</span>, Abhinav Shrivastava, Ser-Nam Lim, Yu-Gang Jiang</div>
+                            <div class="paper-bottom">
+                                <span class="venue-tag">CVPR 2022</span>
+                                <div class="paper-links-inline">
+                                    <a href="https://openaccess.thecvf.com/content/CVPR2022/html/Wang_ObjectFormer_for_Image_Manipulation_Detection_and_Localization_CVPR_2022_paper.html" class="paper-btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
             <!-- 2021 -->
-            <div class="paper-item">
-                <div class="paper-content">
-                    <span class="paper-title">Action-guided 3D Human Motion Prediction</span>
-                    <div class="paper-authors">Jiangxin Sun, Zihang Lin, <span class="me">Xintong Han</span>, Jian-Fang Hu, Jia Xu, Wei-Shi Zheng</div>
-                    <div class="paper-meta">
-                        <span class="venue">NeurIPS 2021</span>
-                    </div>
-                </div>
-                <div class="paper-links">
-                    <a href="https://proceedings.neurips.cc/paper/2021/file/fd9dd764a6f1d73f4340d570804eacc4-Paper.pdf" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
-                </div>
-            </div>
+            <div class="year-group reveal">
+                <div class="year-label">2021</div>
+                <div class="year-papers">
 
-             <div class="paper-item">
-                <div class="paper-content">
-                    <span class="paper-title">Few-Shot Human Motion Transfer by Personalized Geometry and Texture Modeling</span>
-                    <div class="paper-authors">Zhichao Huang, <span class="me">Xintong Han</span>, Jia Xu, Tong Zhang</div>
-                    <div class="paper-meta">
-                        <span class="venue">CVPR 2021</span>
+                    <div class="paper-card">
+                        <div class="paper-info">
+                            <span class="paper-title">Action-guided 3D Human Motion Prediction</span>
+                            <div class="paper-authors">Jiangxin Sun, Zihang Lin, <span class="me">Xintong Han</span>, Jian-Fang Hu, Jia Xu, Wei-Shi Zheng</div>
+                            <div class="paper-bottom">
+                                <span class="venue-tag">NeurIPS 2021</span>
+                                <div class="paper-links-inline">
+                                    <a href="https://proceedings.neurips.cc/paper/2021/file/fd9dd764a6f1d73f4340d570804eacc4-Paper.pdf" class="paper-btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="paper-links">
-                    <a href="https://arxiv.org/pdf/2103.14338" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
-                    <a href="https://github.com/HuangZhiChao95/FewShotMotionTransfer" class="btn"><i class="fab fa-github"></i> CODE</a>
-                </div>
-            </div>
 
-             <div class="paper-item">
-                <div class="paper-content">
-                    <span class="paper-title">PD-GAN: Probabilistic Diverse GAN for Image Inpainting</span>
-                    <div class="paper-authors">Hongyu Liu, Ziyu Wan, Wei Huang, Yibing Song, <span class="me">Xintong Han</span>, Jing Liao</div>
-                    <div class="paper-meta">
-                        <span class="venue">CVPR 2021</span>
+                    <div class="paper-card">
+                        <div class="paper-info">
+                            <span class="paper-title">Few-Shot Human Motion Transfer by Personalized Geometry and Texture Modeling</span>
+                            <div class="paper-authors">Zhichao Huang, <span class="me">Xintong Han</span>, Jia Xu, Tong Zhang</div>
+                            <div class="paper-bottom">
+                                <span class="venue-tag">CVPR 2021</span>
+                                <div class="paper-links-inline">
+                                    <a href="https://arxiv.org/pdf/2103.14338" class="paper-btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                                    <a href="https://github.com/HuangZhiChao95/FewShotMotionTransfer" class="paper-btn" data-repo="HuangZhiChao95/FewShotMotionTransfer"><i class="fab fa-github"></i> Code <span class="star-badge"><i class="fas fa-star star-icon"></i> <span class="star-count">--</span></span></a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="paper-links">
-                    <a href="https://arxiv.org/pdf/2105.02201" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
-                    <a href="https://github.com/KumapowerLIU/PD-GAN" class="btn"><i class="fab fa-github"></i> CODE</a>
-                </div>
-            </div>
 
-             <div class="paper-item">
-                <div class="paper-content">
-                    <span class="paper-title">DeFLOCNet: Deep Image Editing via Flexible Low-level Controls</span>
-                    <div class="paper-authors">Hongyu Liu, Ziyu Wan, Wei Huang, Yibing Song, <span class="me">Xintong Han</span>, Jing Liao, Bing Jiang, Wei Liu</div>
-                    <div class="paper-meta">
-                        <span class="venue">CVPR 2021</span>
+                    <div class="paper-card">
+                        <div class="paper-info">
+                            <span class="paper-title">PD-GAN: Probabilistic Diverse GAN for Image Inpainting</span>
+                            <div class="paper-authors">Hongyu Liu, Ziyu Wan, Wei Huang, Yibing Song, <span class="me">Xintong Han</span>, Jing Liao</div>
+                            <div class="paper-bottom">
+                                <span class="venue-tag">CVPR 2021</span>
+                                <div class="paper-links-inline">
+                                    <a href="https://arxiv.org/pdf/2105.02201" class="paper-btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                                    <a href="https://github.com/KumapowerLIU/PD-GAN" class="paper-btn" data-repo="KumapowerLIU/PD-GAN"><i class="fab fa-github"></i> Code <span class="star-badge"><i class="fas fa-star star-icon"></i> <span class="star-count">--</span></span></a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="paper-links">
-                    <a href="https://arxiv.org/pdf/2103.12723.pdf" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
-                    <a href="https://github.com/KumapowerLIU/DeFLOCNet" class="btn"><i class="fab fa-github"></i> CODE</a>
-                </div>
-            </div>
 
-             <div class="paper-item">
-                <div class="paper-content">
-                    <span class="paper-title">Fine-Grained Shape-Appearance Mutual Learning for Cloth-Changing Person Re-Identification</span>
-                    <div class="paper-authors">Peixian Hong, Tao Wu, Ancong Wu, <span class="me">Xintong Han</span>, Wei-Shi Zheng</div>
-                    <div class="paper-meta">
-                        <span class="venue">CVPR 2021</span>
+                    <div class="paper-card">
+                        <div class="paper-info">
+                            <span class="paper-title">DeFLOCNet: Deep Image Editing via Flexible Low-level Controls</span>
+                            <div class="paper-authors">Hongyu Liu, Ziyu Wan, Wei Huang, Yibing Song, <span class="me">Xintong Han</span>, Jing Liao, Bing Jiang, Wei Liu</div>
+                            <div class="paper-bottom">
+                                <span class="venue-tag">CVPR 2021</span>
+                                <div class="paper-links-inline">
+                                    <a href="https://arxiv.org/pdf/2103.12723.pdf" class="paper-btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                                    <a href="https://github.com/KumapowerLIU/DeFLOCNet" class="paper-btn" data-repo="KumapowerLIU/DeFLOCNet"><i class="fab fa-github"></i> Code <span class="star-badge"><i class="fas fa-star star-icon"></i> <span class="star-count">--</span></span></a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="paper-links">
-                    <a href="https://openaccess.thecvf.com/content/CVPR2021/papers/Hong_Fine-Grained_Shape-Appearance_Mutual_Learning_for_Cloth-Changing_Person_Re-Identification_CVPR_2021_paper.pdf" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
+
+                    <div class="paper-card">
+                        <div class="paper-info">
+                            <span class="paper-title">Fine-Grained Shape-Appearance Mutual Learning for Cloth-Changing Person Re-Identification</span>
+                            <div class="paper-authors">Peixian Hong, Tao Wu, Ancong Wu, <span class="me">Xintong Han</span>, Wei-Shi Zheng</div>
+                            <div class="paper-bottom">
+                                <span class="venue-tag">CVPR 2021</span>
+                                <div class="paper-links-inline">
+                                    <a href="https://openaccess.thecvf.com/content/CVPR2021/papers/Hong_Fine-Grained_Shape-Appearance_Mutual_Learning_for_Cloth-Changing_Person_Re-Identification_CVPR_2021_paper.pdf" class="paper-btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
             <!-- 2020 -->
-            <div class="paper-item">
-                <div class="paper-content">
-                    <span class="paper-title">Learning 3D Face Reconstruction with a Pose Guidance Network</span>
-                    <div class="paper-authors">Pengpeng Liu, <span class="me">Xintong Han</span>, Michael Lyu, Irwin King, Jia Xu</div>
-                    <div class="paper-meta">
-                        <span class="venue">ACCV 2020</span>
-                        <span class="tag-oral">Oral</span>
-                    </div>
-                </div>
-                <div class="paper-links">
-                    <a href="https://arxiv.org/pdf/2010.04384.pdf" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
-                </div>
-            </div>
+            <div class="year-group reveal">
+                <div class="year-label">2020</div>
+                <div class="year-papers">
 
-            <div class="paper-item">
-                <div class="paper-content">
-                    <span class="paper-title">MakeItTalk: Speaker-Aware Talking Head Animation</span>
-                    <div class="paper-authors">Yang Zhou, Dingzeyu Li, <span class="me">Xintong Han</span>, Evangelos Kalogerakis, Eli Shechtman, Jose Echevarria</div>
-                    <div class="paper-meta">
-                        <span class="venue">SIGGRAPH Asia 2020</span>
+                    <div class="paper-card">
+                        <div class="paper-info">
+                            <span class="paper-title">Learning 3D Face Reconstruction with a Pose Guidance Network</span>
+                            <div class="paper-authors">Pengpeng Liu, <span class="me">Xintong Han</span>, Michael Lyu, Irwin King, Jia Xu</div>
+                            <div class="paper-bottom">
+                                <span class="venue-tag">ACCV 2020</span>
+                                <span class="award-tag">Oral</span>
+                                <div class="paper-links-inline">
+                                    <a href="https://arxiv.org/pdf/2010.04384.pdf" class="paper-btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="paper-links">
-                    <a href="https://arxiv.org/pdf/2004.12992.pdf" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
-                </div>
-            </div>
-            
-            <div class="paper-item">
-                <div class="paper-content">
-                    <span class="paper-title">iFAN: Image-Instance Full Alignment Networks for Adaptive Object Detection</span>
-                    <div class="paper-authors">Chenfan Zhuang, <span class="me">Xintong Han</span>, Weilin Huang, Matthew R. Scott</div>
-                    <div class="paper-meta">
-                        <span class="venue">AAAI 2020</span>
+
+                    <div class="paper-card">
+                        <div class="paper-info">
+                            <span class="paper-title">MakeItTalk: Speaker-Aware Talking Head Animation</span>
+                            <div class="paper-authors">Yang Zhou, Dingzeyu Li, <span class="me">Xintong Han</span>, Evangelos Kalogerakis, Eli Shechtman, Jose Echevarria</div>
+                            <div class="paper-bottom">
+                                <span class="venue-tag">SIGGRAPH Asia 2020</span>
+                                <div class="paper-links-inline">
+                                    <a href="https://arxiv.org/pdf/2004.12992.pdf" class="paper-btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="paper-links">
-                    <a href="https://arxiv.org/pdf/2003.04132.pdf" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
-                </div>
-            </div>
-            
-             <div class="paper-item">
-                <div class="paper-content">
-                    <span class="paper-title">Channel Interaction Networks for Fine-Grained Image Categorization</span>
-                    <div class="paper-authors">Yu Gao, <span class="me">Xintong Han</span>, Weilin Huang, Matthew R. Scott</div>
-                    <div class="paper-meta">
-                        <span class="venue">AAAI 2020</span>
+
+                    <div class="paper-card">
+                        <div class="paper-info">
+                            <span class="paper-title">iFAN: Image-Instance Full Alignment Networks for Adaptive Object Detection</span>
+                            <div class="paper-authors">Chenfan Zhuang, <span class="me">Xintong Han</span>, Weilin Huang, Matthew R. Scott</div>
+                            <div class="paper-bottom">
+                                <span class="venue-tag">AAAI 2020</span>
+                                <div class="paper-links-inline">
+                                    <a href="https://arxiv.org/pdf/2003.04132.pdf" class="paper-btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="paper-links">
-                    <a href="https://arxiv.org/pdf/2003.05235" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
-                </div>
-            </div>
-            
-            <div class="paper-item">
-                <div class="paper-content">
-                    <span class="paper-title">Generate, Segment and Refine: Towards Generic Manipulation Segmentation</span>
-                    <div class="paper-authors">Peng Zhou, Bor-Chun Chen, <span class="me">Xintong Han</span>, Mahyar Najibi, Abhinav Shrivastava, Ser-Nam Lim, Larry S. Davis</div>
-                    <div class="paper-meta">
-                        <span class="venue">AAAI 2020</span>
+
+                    <div class="paper-card">
+                        <div class="paper-info">
+                            <span class="paper-title">Channel Interaction Networks for Fine-Grained Image Categorization</span>
+                            <div class="paper-authors">Yu Gao, <span class="me">Xintong Han</span>, Weilin Huang, Matthew R. Scott</div>
+                            <div class="paper-bottom">
+                                <span class="venue-tag">AAAI 2020</span>
+                                <div class="paper-links-inline">
+                                    <a href="https://arxiv.org/pdf/2003.05235" class="paper-btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="paper-links">
-                    <a href="http://arxiv.org/pdf/1811.09729.pdf" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
+
+                    <div class="paper-card">
+                        <div class="paper-info">
+                            <span class="paper-title">Generate, Segment and Refine: Towards Generic Manipulation Segmentation</span>
+                            <div class="paper-authors">Peng Zhou, Bor-Chun Chen, <span class="me">Xintong Han</span>, Mahyar Najibi, Abhinav Shrivastava, Ser-Nam Lim, Larry S. Davis</div>
+                            <div class="paper-bottom">
+                                <span class="venue-tag">AAAI 2020</span>
+                                <div class="paper-links-inline">
+                                    <a href="http://arxiv.org/pdf/1811.09729.pdf" class="paper-btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
             <!-- 2019 -->
-             <div class="paper-item">
-                <div class="paper-content">
-                    <span class="paper-title">Compatible and Diverse Fashion Image Inpainting</span>
-                    <div class="paper-authors"><span class="me">Xintong Han</span>, Zuxuan Wu, Weilin Huang, Matthew R. Scott, Larry S. Davis</div>
-                    <div class="paper-meta">
-                        <span class="venue">ICCV 2019</span>
-                        <span class="tag-oral">Oral</span>
+            <div class="year-group reveal">
+                <div class="year-label">2019</div>
+                <div class="year-papers">
+
+                    <div class="paper-card">
+                        <div class="paper-info">
+                            <span class="paper-title">Compatible and Diverse Fashion Image Inpainting</span>
+                            <div class="paper-authors"><span class="me">Xintong Han</span>, Zuxuan Wu, Weilin Huang, Matthew R. Scott, Larry S. Davis</div>
+                            <div class="paper-bottom">
+                                <span class="venue-tag">ICCV 2019</span>
+                                <span class="award-tag">Oral</span>
+                                <div class="paper-links-inline">
+                                    <a href="http://openaccess.thecvf.com/content_ICCV_2019/papers/Han_FiNet_Compatible_and_Diverse_Fashion_Image_Inpainting_ICCV_2019_paper.pdf" class="paper-btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="paper-links">
-                    <a href="http://openaccess.thecvf.com/content_ICCV_2019/papers/Han_FiNet_Compatible_and_Diverse_Fashion_Image_Inpainting_ICCV_2019_paper.pdf" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
+
+                    <div class="paper-card">
+                        <div class="paper-info">
+                            <span class="paper-title">ClothFlow: A Flow-Based Model for Clothed Person Generation</span>
+                            <div class="paper-authors"><span class="me">Xintong Han</span>, Xiaojun Hu, Weilin Huang, Matthew R. Scott</div>
+                            <div class="paper-bottom">
+                                <span class="venue-tag">ICCV 2019</span>
+                                <div class="paper-links-inline">
+                                    <a href="http://openaccess.thecvf.com/content_ICCV_2019/papers/Han_ClothFlow_A_Flow-Based_Model_for_Clothed_Person_Generation_ICCV_2019_paper.pdf" class="paper-btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="paper-card">
+                        <div class="paper-info">
+                            <span class="paper-title">Multi-Similarity Loss with General Pair Weighting for Deep Metric Learning</span>
+                            <div class="paper-authors">Xun Wang, <span class="me">Xintong Han</span>, Weilin Huang, Dengke Dong, Matthew R. Scott</div>
+                            <div class="paper-bottom">
+                                <span class="venue-tag">CVPR 2019</span>
+                                <div class="paper-links-inline">
+                                    <a href="https://arxiv.org/pdf/1904.06627.pdf" class="paper-btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                                    <a href="https://github.com/MalongTech/research-ms-loss" class="paper-btn" data-repo="MalongTech/research-ms-loss"><i class="fab fa-github"></i> Code <span class="star-badge"><i class="fas fa-star star-icon"></i> <span class="star-count">--</span></span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
-            <div class="paper-item">
-                <div class="paper-content">
-                    <span class="paper-title">ClothFlow: A Flow-Based Model for Clothed Person Generation</span>
-                    <div class="paper-authors"><span class="me">Xintong Han</span>, Xiaojun Hu, Weilin Huang, Matthew R. Scott</div>
-                    <div class="paper-meta">
-                        <span class="venue">ICCV 2019</span>
+            <!-- 2018 & Earlier -->
+            <div class="year-group reveal">
+                <div class="year-label">2018</div>
+                <div class="year-papers">
+
+                    <div class="paper-card">
+                        <div class="paper-info">
+                            <span class="paper-title">DCAN: Dual Channel-wise Alignment Networks for Unsupervised Scene Adaptation</span>
+                            <div class="paper-authors">Zuxuan Wu, <span class="me">Xintong Han</span>, Yen-Liang Lin, Mustafa Gkhan Uzunbas, Tom Goldstein, Ser Nam Lim, Larry Davis</div>
+                            <div class="paper-bottom">
+                                <span class="venue-tag">ECCV 2018</span>
+                                <div class="paper-links-inline">
+                                    <a href="https://arxiv.org/pdf/1804.05827.pdf" class="paper-btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="paper-links">
-                    <a href="http://openaccess.thecvf.com/content_ICCV_2019/papers/Han_ClothFlow_A_Flow-Based_Model_for_Clothed_Person_Generation_ICCV_2019_paper.pdf" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
+
+                    <div class="paper-card">
+                        <div class="paper-info">
+                            <span class="paper-title">VITON: An Image-based Virtual Try-on Network</span>
+                            <div class="paper-authors"><span class="me">Xintong Han</span>, Zuxuan Wu, Zhe Wu, Ruichi Yu, Larry Davis</div>
+                            <div class="paper-bottom">
+                                <span class="venue-tag">CVPR 2018</span>
+                                <span class="award-tag">Spotlight</span>
+                                <div class="paper-links-inline">
+                                    <a href="https://arxiv.org/pdf/1711.08447.pdf" class="paper-btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                                    <a href="https://github.com/xthan/viton/" class="paper-btn" data-repo="xthan/viton"><i class="fab fa-github"></i> Code <span class="star-badge"><i class="fas fa-star star-icon"></i> <span class="star-count">--</span></span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="paper-card">
+                        <div class="paper-info">
+                            <span class="paper-title">Learning Rich Features for Image Manipulation Detection</span>
+                            <div class="paper-authors">Peng Zhou, <span class="me">Xintong Han</span>, Vlad Morariu, Larry Davis</div>
+                            <div class="paper-bottom">
+                                <span class="venue-tag">CVPR 2018</span>
+                                <div class="paper-links-inline">
+                                    <a href="https://arxiv.org/pdf/1805.04953.pdf" class="paper-btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                                    <a href="https://github.com/pengzhou1108/RGB-N" class="paper-btn" data-repo="pengzhou1108/RGB-N"><i class="fab fa-github"></i> Code <span class="star-badge"><i class="fas fa-star star-icon"></i> <span class="star-count">--</span></span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="paper-card">
+                        <div class="paper-info">
+                            <span class="paper-title">NISP: Pruning Networks Using Neuron Importance Score Propagation</span>
+                            <div class="paper-authors">Ruichi Yu, Ang Li, Chun-Fu Chen, Jui-Hsin Lai, Vlad Morariu, <span class="me">Xintong Han</span>, Mingfei Gao, Ching-Yung Lin, Larry Davis</div>
+                            <div class="paper-bottom">
+                                <span class="venue-tag">CVPR 2018</span>
+                                <span class="award-tag">Spotlight</span>
+                                <div class="paper-links-inline">
+                                    <a href="https://arxiv.org/pdf/1711.05908.pdf" class="paper-btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
-            <div class="paper-item">
-                <div class="paper-content">
-                    <span class="paper-title">Multi-Similarity Loss with General Pair Weighting for Deep Metric Learning</span>
-                    <div class="paper-authors">Xun Wang, <span class="me">Xintong Han</span>, Weilin Huang, Dengke Dong, Matthew R. Scott</div>
-                    <div class="paper-meta">
-                        <span class="venue">CVPR 2019</span>
-                    </div>
-                </div>
-                <div class="paper-links">
-                    <a href="https://arxiv.org/pdf/1904.06627.pdf" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
-                    <a href="https://github.com/MalongTech/research-ms-loss" class="btn"><i class="fab fa-github"></i> CODE</a>
-                </div>
-            </div>
+            <!-- 2017 & Earlier -->
+            <div class="year-group reveal">
+                <div class="year-label">2017</div>
+                <div class="year-papers">
 
-            <!-- 2018 & Older -->
-            <div class="paper-item">
-                <div class="paper-content">
-                    <span class="paper-title">DCAN: Dual Channel-wise Alignment Networks for Unsupervised Scene Adaptation</span>
-                    <div class="paper-authors">Zuxuan Wu, <span class="me">Xintong Han</span>, Yen-Liang Lin, Mustafa Gkhan Uzunbas, Tom Goldstein, Ser Nam Lim, Larry Davis</div>
-                    <div class="paper-meta">
-                        <span class="venue">ECCV 2018</span>
+                    <div class="paper-card">
+                        <div class="paper-info">
+                            <span class="paper-title">Automatic Spatially-aware Fashion Concept Discovery</span>
+                            <div class="paper-authors"><span class="me">Xintong Han</span>, Zuxuan Wu, Phoenix Huang, Xiao Zhang, Menglong Zhu, Yuan Li, Yang Zhao, Larry Davis</div>
+                            <div class="paper-bottom">
+                                <span class="venue-tag">ICCV 2017</span>
+                                <div class="paper-links-inline">
+                                    <a href="https://arxiv.org/pdf/1708.01311.pdf" class="paper-btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                                    <a href="https://github.com/xthan/fashion-200k/" class="paper-btn" data-repo="xthan/fashion-200k"><i class="fas fa-database"></i> Data <span class="star-badge"><i class="fas fa-star star-icon"></i> <span class="star-count">--</span></span></a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="paper-links">
-                    <a href="https://arxiv.org/pdf/1804.05827.pdf" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
-                </div>
-            </div>
 
-            <div class="paper-item">
-                <div class="paper-content">
-                    <span class="paper-title">VITON: An Image-based Virtual Try-on Network</span>
-                    <div class="paper-authors"><span class="me">Xintong Han</span>, Zuxuan Wu, Zhe Wu, Ruichi Yu, Larry Davis</div>
-                    <div class="paper-meta">
-                        <span class="venue">CVPR 2018</span>
-                        <span class="tag-spotlight">Spotlight</span>
+                    <div class="paper-card">
+                        <div class="paper-info">
+                            <span class="paper-title">Learning Fashion Compatibility with Bidirectional LSTMs</span>
+                            <div class="paper-authors"><span class="me">Xintong Han</span>, Zuxuan Wu, Yu-Gang Jiang, Larry Davis</div>
+                            <div class="paper-bottom">
+                                <span class="venue-tag">ACM MM 2017</span>
+                                <span class="award-tag">Oral</span>
+                                <div class="paper-links-inline">
+                                    <a href="https://arxiv.org/pdf/1707.05691.pdf" class="paper-btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                                    <a href="https://github.com/xthan/polyvore/" class="paper-btn" data-repo="xthan/polyvore"><i class="fab fa-github"></i> Code <span class="star-badge"><i class="fas fa-star star-icon"></i> <span class="star-count">--</span></span></a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="paper-links">
-                    <a href="https://arxiv.org/pdf/1711.08447.pdf" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
-                    <a href="https://github.com/xthan/viton/" class="btn"><i class="fab fa-github"></i> CODE</a>
-                </div>
-            </div>
-            
-             <div class="paper-item">
-                <div class="paper-content">
-                    <span class="paper-title">Learning Rich Features for Image Manipulation Detection</span>
-                    <div class="paper-authors">Peng Zhou, <span class="me">Xintong Han</span>, Vlad Morariu, Larry Davis</div>
-                    <div class="paper-meta">
-                        <span class="venue">CVPR 2018</span>
+
+                    <div class="paper-card">
+                        <div class="paper-info">
+                            <span class="paper-title">Two-Stream Neural Networks for Tampered Face Detection</span>
+                            <div class="paper-authors">Peng Zhou*, <span class="me">Xintong Han*</span>, Vlad Morariu, Larry Davis</div>
+                            <div class="paper-bottom">
+                                <span class="venue-tag">CVPRW 2017</span>
+                                <div class="paper-links-inline">
+                                    <a href="https://arxiv.org/pdf/1803.11276.pdf" class="paper-btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="paper-links">
-                    <a href="https://arxiv.org/pdf/1805.04953.pdf" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
-                    <a href="https://github.com/pengzhou1108/RGB-N" class="btn"><i class="fab fa-github"></i> CODE</a>
-                </div>
-            </div>
-            
-            <div class="paper-item">
-                <div class="paper-content">
-                    <span class="paper-title">NISP: Pruning Networks Using Neuron Importance Score Propagation</span>
-                    <div class="paper-authors">Ruichi Yu, Ang Li, Chun-Fu Chen, Jui-Hsin Lai, Vlad Morariu, <span class="me">Xintong Han</span>, Mingfei Gao, Ching-Yung Lin, Larry Davis</div>
-                    <div class="paper-meta">
-                        <span class="venue">CVPR 2018</span>
-                        <span class="tag-spotlight">Spotlight</span>
+
+                    <div class="paper-card">
+                        <div class="paper-info">
+                            <span class="paper-title">Son of Zorn's Lemma: Targeted Style Transfer Using Instance-aware Semantic Segmentation</span>
+                            <div class="paper-authors">Carlos Castillo, Soham De, <span class="me">Xintong Han</span>, Bharat Singh, Abhay Kumar Yadav, Tom Goldstein</div>
+                            <div class="paper-bottom">
+                                <span class="venue-tag">ICASSP 2017</span>
+                                <span class="award-tag">Oral</span>
+                                <div class="paper-links-inline">
+                                    <a href="https://arxiv.org/pdf/1701.02357.pdf" class="paper-btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="paper-links">
-                    <a href="https://arxiv.org/pdf/1711.05908.pdf" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
-                </div>
-            </div>
-            
-            <div class="paper-item">
-                <div class="paper-content">
-                    <span class="paper-title">Automatic Spatially-aware Fashion Concept Discovery</span>
-                    <div class="paper-authors"><span class="me">Xintong Han</span>, Zuxuan Wu, Phoenix Huang, Xiao Zhang, Menglong Zhu, Yuan Li, Yang Zhao, Larry Davis</div>
-                    <div class="paper-meta">
-                        <span class="venue">ICCV 2017</span>
+
+                    <div class="paper-card">
+                        <div class="paper-info">
+                            <span class="paper-title">VRFP: On-the-fly Video Retrieval using Web Images and Fast Fisher Vector Products</span>
+                            <div class="paper-authors"><span class="me">Xintong Han*</span>, Bharat Singh*, Vlad Morariu, Larry Davis</div>
+                            <div class="paper-bottom">
+                                <span class="venue-tag">IEEE TMM 2017</span>
+                                <div class="paper-links-inline">
+                                    <a href="https://arxiv.org/pdf/1512.03384.pdf" class="paper-btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="paper-links">
-                    <a href="https://arxiv.org/pdf/1708.01311.pdf" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
-                    <a href="https://github.com/xthan/fashion-200k/" class="btn"><i class="fas fa-database"></i> DATA</a>
-                </div>
-            </div>
-            
-             <div class="paper-item">
-                <div class="paper-content">
-                    <span class="paper-title">Learning Fashion Compatibility with Bidirectional LSTMs</span>
-                    <div class="paper-authors"><span class="me">Xintong Han</span>, Zuxuan Wu, Yu-Gang Jiang, Larry Davis</div>
-                    <div class="paper-meta">
-                        <span class="venue">ACM Multimedia 2017</span>
-                        <span class="tag-oral">Oral</span>
+
+                    <div class="paper-card">
+                        <div class="paper-info">
+                            <span class="paper-title">Machine Learning-based Early Termination in Prediction Block Decomposition for VP9</span>
+                            <div class="paper-authors"><span class="me">Xintong Han</span>, Yunqing Wang, Yaowu Xu, Jim Bankoski</div>
+                            <div class="paper-bottom">
+                                <span class="venue-tag">SPIE 2016</span>
+                                <div class="paper-links-inline">
+                                    <a href="https://library.imaging.org/ei/articles/28/2/art00006" class="paper-btn"><i class="fas fa-file-pdf"></i> PDF</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="paper-links">
-                    <a href="https://arxiv.org/pdf/1707.05691.pdf" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
-                    <a href="https://github.com/xthan/polyvore/" class="btn"><i class="fab fa-github"></i> CODE</a>
-                </div>
-            </div>
-            
-            <div class="paper-item">
-                <div class="paper-content">
-                    <span class="paper-title">Two-Stream Neural Networks for Tampered Face Detection</span>
-                    <div class="paper-authors">Peng Zhou*, <span class="me">Xintong Han*</span>, Vlad Morariu, Larry Davis</div>
-                    <div class="paper-meta">
-                        <span class="venue">CVPRW 2017</span>
-                    </div>
-                </div>
-                <div class="paper-links">
-                    <a href="https://arxiv.org/pdf/1803.11276.pdf" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
-                </div>
-            </div>
-            
-            <div class="paper-item">
-                <div class="paper-content">
-                    <span class="paper-title">Son of Zorn's Lemma: Targeted Style Transfer Using Instance-aware Semantic Segmentation</span>
-                    <div class="paper-authors">Carlos Castillo, Soham De, <span class="me">Xintong Han</span>, Bharat Singh, Abhay Kumar Yadav, Tom Goldstein</div>
-                    <div class="paper-meta">
-                        <span class="venue">ICASSP 2017</span>
-                        <span class="tag-oral">Oral</span>
-                    </div>
-                </div>
-                <div class="paper-links">
-                    <a href="https://arxiv.org/pdf/1701.02357.pdf" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
-                </div>
-            </div>
-            
-             <div class="paper-item">
-                <div class="paper-content">
-                    <span class="paper-title">VRFP: On-the-fly Video Retrieval using Web Images and Fast Fisher Vector Products</span>
-                    <div class="paper-authors"><span class="me">Xintong Han*</span>, Bharat Singh*, Vlad Morariu, Larry Davis</div>
-                    <div class="paper-meta">
-                        <span class="venue">IEEE TMM 2017</span>
-                    </div>
-                </div>
-                <div class="paper-links">
-                    <a href="https://arxiv.org/pdf/1512.03384.pdf" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
-                </div>
-            </div>
-            
-            <div class="paper-item">
-                <div class="paper-content">
-                    <span class="paper-title">Machine Learning-based Early Termination in Prediction Block Decomposition for VP9</span>
-                    <div class="paper-authors"><span class="me">Xintong Han</span>, Yunqing Wang, Yaowu Xu, Jim Bankoski</div>
-                    <div class="paper-meta">
-                        <span class="venue">SPIE 2016</span>
-                    </div>
-                </div>
-                <div class="paper-links">
-                    <a href="https://library.imaging.org/ei/articles/28/2/art00006" class="btn"><i class="fas fa-file-pdf"></i> PDF</a>
+
                 </div>
             </div>
 
         </div>
 
+        <!-- ═══ FOOTER ═══ -->
         <footer>
-            <!-- <p>Rendering the Future.</p> -->
-            <p class="footer-logo">
-                Made with <i class="fas fa-microchip"></i> Gemini 3 Pro. 
-            </p>
-            <p style="font-size: 0.75rem; margin-top:5px; font-style: italic; opacity: 0.7;">
+            <p>Rendering the future, one paper at a time.</p>
+            <p style="margin-top: 6px; font-size: 0.68rem; font-style: italic; opacity: 0.6;">
                 (No GPUs were harmed in the making of this HTML. Browsing this site consumes 0 tokens.)
             </p>
-            <p style="margin-top:20px;">&copy; 2025 Xintong Han</p>
+            <p style="margin-top: 12px;">
+                <span class="footer-accent">&copy;</span> 2026 Xintong Han
+            </p>
         </footer>
 
     </div>
 
     <script>
-        // Theme Toggle Logic
-        const toggleBtn = document.getElementById('theme-toggle');
-        const icon = toggleBtn.querySelector('i');
-        const html = document.documentElement;
+        /* ══════════════════════════════════════════
+           THEME TOGGLE
+           ══════════════════════════════════════════ */
+        const toggle = document.getElementById('theme-toggle');
+        const icon = toggle.querySelector('i');
+        const root = document.documentElement;
 
-        // Default to Light
-        const savedTheme = localStorage.getItem('theme') || 'light';
-        html.setAttribute('data-theme', savedTheme);
-        updateIcon(savedTheme);
+        const saved = localStorage.getItem('theme') || 'light';
+        root.setAttribute('data-theme', saved);
+        syncIcon(saved);
 
-        toggleBtn.addEventListener('click', () => {
-            const currentTheme = html.getAttribute('data-theme');
-            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-            html.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            updateIcon(newTheme);
+        toggle.addEventListener('click', () => {
+            const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            root.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+            syncIcon(next);
         });
 
-        function updateIcon(theme) {
-            if (theme === 'dark') {
-                icon.className = 'fas fa-moon';
-            } else {
-                icon.className = 'fas fa-sun';
-            }
+        function syncIcon(theme) {
+            icon.className = theme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
         }
+
+        /* ══════════════════════════════════════════
+           SCROLL REVEAL (IntersectionObserver)
+           ══════════════════════════════════════════ */
+        const revealEls = document.querySelectorAll('.reveal');
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+            revealEls.forEach(el => observer.observe(el));
+        } else {
+            revealEls.forEach(el => el.classList.add('visible'));
+        }
+
+        /* ══════════════════════════════════════════
+           BACK TO TOP
+           ══════════════════════════════════════════ */
+        const backBtn = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            backBtn.classList.toggle('visible', window.scrollY > 600);
+        }, { passive: true });
+        backBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        /* ══════════════════════════════════════════
+           GITHUB STARS — via Shields.io (free CDN-cached proxy)
+           Shields.io caches server-side, so all visitors share
+           the same cache. No GitHub API quota consumed.
+           ══════════════════════════════════════════ */
+        (function() {
+            // Hardcoded fallback — shown instantly, updated by Shields.io
+            const DEFAULTS = {
+                'Francis-Rings/StableAnimator': 1400,
+                'Francis-Rings/StableAvatar': 1200,
+                'Francis-Rings/FlashPortrait': 469,
+                'Francis-Rings/MotionFollower': 242,
+                'Francis-Rings/MotionEditor': 187,
+                'xthan/viton': 581,
+                'MalongTech/research-ms-loss': 498,
+                'pengzhou1108/RGB-N': 172,
+                'xthan/polyvore': 166,
+                'KumapowerLIU/PD-GAN': 149,
+                'AemikaChow/CLOTH4D': 79,
+                'HuangZhiChao95/FewShotMotionTransfer': 71,
+                'xthan/fashion-200k': 69,
+                'KumapowerLIU/DeFLOCNet': 48,
+                'Liu-Feng-deeplearning/CoverHunter': 38,
+                'KumapowerLIU/FFCLIP': 34
+            };
+
+            function formatStars(n) {
+                if (n >= 1000) return (n / 1000).toFixed(1).replace(/\.0$/, '') + 'k';
+                return String(n);
+            }
+
+            function applyStars(stars) {
+                document.querySelectorAll('[data-repo]').forEach(el => {
+                    const repo = el.dataset.repo;
+                    const count = stars[repo];
+                    if (count !== undefined) {
+                        const span = el.querySelector('.star-count');
+                        if (span) span.textContent = formatStars(count);
+                    }
+                });
+            }
+
+            // 1) Immediately show hardcoded defaults
+            applyStars(DEFAULTS);
+
+            // 2) Fetch live values via Shields.io JSON endpoint (server-side cached)
+            const repos = [...new Set(
+                [...document.querySelectorAll('[data-repo]')].map(el => el.dataset.repo)
+            )];
+
+            async function fetchViaShields() {
+                const stars = {};
+                // Fetch all in parallel — Shields.io handles rate limiting
+                const results = await Promise.allSettled(
+                    repos.map(repo =>
+                        fetch('https://img.shields.io/github/stars/' + repo + '.json')
+                            .then(r => r.ok ? r.json() : null)
+                            .then(data => {
+                                if (data && data.value) {
+                                    // Parse "581" or "1.4k" back to number for formatting
+                                    let val = data.value.replace(/,/g, '');
+                                    let num = val.endsWith('k') ? parseFloat(val) * 1000 : parseInt(val);
+                                    if (!isNaN(num)) stars[repo] = num;
+                                }
+                            })
+                    )
+                );
+                if (Object.keys(stars).length > 0) applyStars(stars);
+            }
+
+            fetchViaShields();
+        })();
+
+        /* ══════════════════════════════════════════
+           AVATAR CAROUSEL — RGB-dominant with random mode flashes
+           ══════════════════════════════════════════ */
+        (function() {
+            const carousel = document.getElementById('avatar-carousel');
+            const dotsContainer = document.getElementById('avatar-dots');
+            const imgs = carousel.querySelectorAll('img');
+            const dots = dotsContainer.querySelectorAll('span');
+            let current = 0;
+            let timeout;
+
+            function goTo(idx) {
+                imgs[current].classList.remove('active');
+                dots[current].classList.remove('active');
+                current = idx;
+                imgs[current].classList.add('active');
+                dots[current].classList.add('active');
+            }
+
+            function randomNonRGB() {
+                return Math.floor(Math.random() * 4) + 1;
+            }
+
+            function cycle() {
+                if (current === 0) {
+                    goTo(randomNonRGB());
+                    timeout = setTimeout(cycle, 1200);
+                } else {
+                    goTo(0);
+                    timeout = setTimeout(cycle, 4000);
+                }
+            }
+
+            // Click dots to jump
+            dots.forEach((dot, i) => {
+                dot.addEventListener('click', () => {
+                    clearTimeout(timeout);
+                    goTo(i);
+                    timeout = setTimeout(cycle, i === 0 ? 4000 : 2000);
+                });
+            });
+
+            // Start after initial 4s on RGB
+            timeout = setTimeout(cycle, 4000);
+
+            // Click carousel to advance
+            carousel.addEventListener('click', () => {
+                clearTimeout(timeout);
+                goTo((current + 1) % imgs.length);
+                timeout = setTimeout(cycle, 3000);
+            });
+
+            // Pause on hover
+            carousel.addEventListener('mouseenter', () => clearTimeout(timeout));
+            carousel.addEventListener('mouseleave', () => {
+                timeout = setTimeout(cycle, current === 0 ? 3000 : 800);
+            });
+        })();
     </script>
 </body>
 </html>
